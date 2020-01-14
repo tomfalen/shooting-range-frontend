@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useReducer } from 'react';
 import './App.css';
+import Router from './components/router';
+import { Provider } from './store';
+import { authReducer, initialAuthState } from './reducers/authReducer';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles'
+import { blue, indigo } from '@material-ui/core/colors'
+
+
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: blue[900]
+    },
+    primary: {
+      main: indigo[700]
+    }
+  },
+  typography: {
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '"Lato"',
+      'sans-serif'
+    ].join(',')
+  }
+});
 
 function App() {
+
+  const sessionId = localStorage.getItem("sessionId");
+  if(sessionId != null){
+    initialAuthState.sessionId = sessionId;
+    initialAuthState.isWorker = localStorage.getItem("isWorker");
+    initialAuthState.permissions = localStorage.getItem("permissions");
+    initialAuthState.isLoggedIn = true;
+  }
+  console.log(initialAuthState)
+  const useAuthState = useReducer(authReducer, initialAuthState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <Provider value={useAuthState}>
+          <ThemeProvider theme={theme}>
+            <Router />
+          </ThemeProvider>
+      </Provider>
+  )
 }
+
+// function ChildComponent(){
+//   const contextValue = useContext(myContext)
+//   return <div>{contextValue}</div>
+// }
 
 export default App;
