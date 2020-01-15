@@ -31,11 +31,10 @@ function App() {
   const sessionId = localStorage.getItem("sessionId");
   if(sessionId != null){
     initialAuthState.sessionId = sessionId;
-    initialAuthState.isWorker = localStorage.getItem("isWorker");
+    initialAuthState.IsWorker = localStorage.getItem("isWorker");
     initialAuthState.permissions = localStorage.getItem("permissions");
     initialAuthState.isLoggedIn = true;
   }
-  console.log(initialAuthState)
   const useAuthState = useReducer(authReducer, initialAuthState);
 
   return (

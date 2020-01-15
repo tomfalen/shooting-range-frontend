@@ -31,6 +31,7 @@ const LoginForm = () => {
                   }
 		    })
 			.then((response) => {
+				console.log(response)
 				dispatch({
 					type: 'LOGIN',
 					payload: {

@@ -5,6 +5,7 @@ import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom';
 import Home from './Hello';
 import LoginForm from './loginForm';
 import RegisterForm from './registerForm';
+import Workers from './workers/About';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -74,6 +75,9 @@ const useStyles = makeStyles(theme => ({
           	</Typography>
 			{isLoggedIn ? (
                 <p>
+					<Button color="inherit" component={Link} to="/About">
+					About
+					</Button>
 					<Button color="inherit" onClick={logOut} component={Link} to="/">
 					Logout
 					</Button>
@@ -95,6 +99,7 @@ const useStyles = makeStyles(theme => ({
 				<Route exact path="/" component={Home} />
 				<Route exact path="/login" component={LoginForm} />
 				<Route exact path="/register" component={RegisterForm} />
+				<Route exact path="/about" component={Workers} />
 			</Switch>
 		</Router>
 	</section>
