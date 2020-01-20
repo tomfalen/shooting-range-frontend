@@ -65,7 +65,7 @@ const LoginForm = () => {
 
 	function onChange(event) {
 		const { name, value } = event.target;
-
+		console.log(isLoggedIn)
 		setFormData((formData) => ({
 			...formData,
 			[name]: value
