@@ -32,7 +32,6 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       '"Lato"',
       'sans-serif'
@@ -75,10 +74,5 @@ function App() {
     </Provider>
   )
 }
-
-// function ChildComponent(){
-//   const contextValue = useContext(myContext)
-//   return <div>{contextValue}</div>
-// }
 
 export default App;

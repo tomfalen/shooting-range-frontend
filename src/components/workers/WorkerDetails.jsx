@@ -13,7 +13,6 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
@@ -100,18 +99,18 @@ export default function WorkerDetails(props) {
     selectedDays: []
   });
 
-  function handleDayClick(day, { selected }) {
-    const { selectedDays } = state;
-    if (selected) {
-      const selectedIndex = selectedDays.findIndex(selectedDay =>
-        DateUtils.isSameDay(selectedDay, day)
-      );
-      selectedDays.splice(selectedIndex, 1);
-    } else {
-      selectedDays.push(day);
-    }
-    setState({ selectedDays });
-  }
+  // function handleDayClick(day, { selected }) {
+  //   const { selectedDays } = state;
+  //   if (selected) {
+  //     const selectedIndex = selectedDays.findIndex(selectedDay =>
+  //       DateUtils.isSameDay(selectedDay, day)
+  //     );
+  //     selectedDays.splice(selectedIndex, 1);
+  //   } else {
+  //     selectedDays.push(day);
+  //   }
+  //   setState({ selectedDays });
+  // }
 
   useEffect(() => {
     Axios.get("http://sokres.ddns.net:50101/worker/current/absences",
@@ -158,7 +157,6 @@ export default function WorkerDetails(props) {
     <div>
       <DayPicker
         selectedDays={state.selectedDays}
-        onDayClick={handleDayClick}
       />
       <Fragment>
         {error && <p className="error">{error}</p>}

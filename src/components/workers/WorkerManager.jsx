@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, Fragment } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import AddWorker from './AddWorker';
 import WorkerDetails from './WorkerDetails';
@@ -19,9 +19,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Axios from 'axios';
 import authContext from '../../store';
-import Spinner from '../spinner';
 import workerApi from './workerApi.js';
 
 export default function WorkerManager() {
@@ -45,7 +43,7 @@ export default function WorkerManager() {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-  const [columns, setColumns] = useState({
+  const [columns] = useState({
     columns: [
       { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
       { title: 'Password', field: 'Password', editable: 'onAdd', hidden: 'true' },
@@ -54,13 +52,13 @@ export default function WorkerManager() {
       { title: 'Pesel', field: 'Pesel', editable: 'always' },
       { title: 'Birthday', field: 'Birthday', type: 'date', editable: 'always' },
       { title: 'Phone', field: 'Phone', editable: 'always' },
-      { title: 'Employee from', field: 'EmployeeFrom', type: 'date', editable: 'never' },
-      { title: 'Employee to', field: 'EmployeeTo', type: 'date', editable: 'never' },
+      { title: 'Employeed', field: 'EmployeeFrom', type: 'date', editable: 'never' },
+      { title: 'Employee to', field: 'EmployeeTo', type: 'date', editable: 'never', hidden: 'true' },
       { title: 'Username', field: 'Username', editable: 'never' },
       { title: 'Email', field: 'Email', editable: 'always' }
     ],
   });
-  const [{ isLoggedIn, error, sessionId }, dispatch] = useContext(authContext);
+  const [{ sessionId }] = useContext(authContext);
 
   const [data, setData] = useState({
     data: []

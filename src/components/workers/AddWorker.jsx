@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect, Fragment } from 'react';
-import Axios from 'axios';
+import React, { useState, useContext, Fragment } from 'react';
 import authContext from '../../store';
 import workerApi from './workerApi.js';
 
@@ -12,7 +11,6 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
@@ -26,9 +24,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function AddWorker() {
-  const [{ error, sessionId }, dispatch] = useContext(authContext);
+  const [{ error, sessionId }] = useContext(authContext);
   const classes = useStyles();
-  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -42,7 +39,7 @@ export default function AddWorker() {
   });
   function onChange(event) {
     const { name, value } = event.target;
-    console.log(name)
+    console.log(sessionId)
 
     setFormData((formData) => ({
       ...formData,
@@ -66,7 +63,6 @@ export default function AddWorker() {
 
   function onSubmit(event) {
     event.preventDefault();
-    setLoading(true);
     console.log(selectedEmployedDate);
     console.log(selectedBirthDate);
     var dd = String(selectedBirthDate.getDate()).padStart(2, '0');

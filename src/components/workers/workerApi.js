@@ -1,12 +1,12 @@
 import Axios from 'axios';
 
-function getWorkers(data) {
+function getWorkers(sessionId) {
     return Axios.get("http://sokres.ddns.net:50101/worker",
         {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": data
+                "Authorization": sessionId
             }
         })
 }

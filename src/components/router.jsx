@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import authContext from '../store';
 import '../App.css';
 import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom';
-import Home from './Hello';
-import LoginForm from './loginForm';
-import RegisterForm from './registerForm';
+import LoginForm from './authorization/loginForm';
+import RegisterForm from './authorization/registerForm';
 import WorkerManager from './workers/WorkerManager';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/core/Menu';
-import Axios from 'axios';
+import authApi from './authorization/authApi';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -28,16 +27,11 @@ const useStyles = makeStyles(theme => ({
   }));
 
   const Navigation = () =>  {
-	const [ { isLoggedIn, sessionId, IsWorker }, dispatch ] = useContext(authContext);
+	const [ { isLoggedIn, sessionId }, dispatch ] = useContext(authContext);
     const logOut = () => {
-        Axios.post("http://sokres.ddns.net:50101/user/logout", { }, 
-              {
-                  headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Authorization": sessionId
-                  }
-              }).then((response) => {
+		console.log(sessionId)
+		authApi.logout(sessionId)
+		.then((response) => {
                   console.log(response)
                       dispatch({
                           type: 'LOGOUT',
@@ -95,7 +89,7 @@ const useStyles = makeStyles(theme => ({
         	</Toolbar>
       	</AppBar>
 			<Switch>
-				<Route exact path="/" component={Home} />
+				<Route exact path="/"  />
 				<Route exact path="/login" component={LoginForm} />
 				<Route exact path="/register" component={RegisterForm} />
 				<Route exact path="/WorkerManager" component={WorkerManager} />
