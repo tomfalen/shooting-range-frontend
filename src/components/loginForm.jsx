@@ -35,14 +35,13 @@ const LoginForm = () => {
 				dispatch({
 					type: 'LOGIN',
 					payload: {
-						sessionId: response.data.sessionId,
-						IsWorker: response.data.isWorker,
-						permissions: response.data.permissions
+						sessionId: response.data.SessionId,
+						IsWorker: response.data.IsWorker,
+						permissions: response.data.Permissions
 					}
 				});
 			})
 			.catch((error) => {
-				console.log(error)
 				dispatch({
 					type: 'LOGIN_ERROR',
 					payload: {
