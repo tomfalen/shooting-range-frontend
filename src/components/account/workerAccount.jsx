@@ -201,7 +201,9 @@ export default function WorkerManager() {
                                         fullWidth
                                         id="standard-basic"
                                         label="First Name"
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                          }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -211,7 +213,9 @@ export default function WorkerManager() {
                                         label="Last Name"
                                         name="LastName"
                                         value={formData.LastName}
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                          }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -221,7 +225,9 @@ export default function WorkerManager() {
                                         name="username"
                                         value={formData.Username}
                                         label="Username"
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                          }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -231,7 +237,9 @@ export default function WorkerManager() {
                                         label="Email"
                                         value={formData.Email}
                                         id="standard-basic"
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                          }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -241,7 +249,9 @@ export default function WorkerManager() {
                                         label="Phone"
                                         fullWidth
                                         id="standard-basic"
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                          }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -251,7 +261,9 @@ export default function WorkerManager() {
                                         name="Birthday"
                                         value={formData.Birthday}
                                         label="Birthday"
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                          }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -261,7 +273,9 @@ export default function WorkerManager() {
                                         value={formData.EmployeeFrom}
                                         label="Employeed"
                                         id="standard-basic"
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                          }}
                                     />
                                 </Grid>
                             </Grid>
