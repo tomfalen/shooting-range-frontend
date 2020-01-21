@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
 	title: {
 		flexGrow: 1,
 	},
+	appBar: {
+		marginBottom: 50,
+	},
 }));
 
 const Navigation = () => {
@@ -58,7 +61,7 @@ const Navigation = () => {
 	return (
 		<section id="main">
 			<Router>
-				<AppBar position="static">
+				<AppBar position="static" className={classes.appBar}>
 					<Toolbar>
 						<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
 							<MenuIcon />
