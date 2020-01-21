@@ -64,8 +64,18 @@ export default function WorkerManager() {
             { title: 'Status', field: 'Status', editable: 'never' },
         ],
     });
-    const [{ sessionId }] = useContext(authContext);
 
+    const [columnsAbsencess] = useState({
+        columns: [
+          { title: 'ID', field: 'Id', editable: 'never' },
+          { title: 'Time from', field: 'TimeFrom', editable: 'always', type: 'date' },
+          { title: 'Time to', field: 'TimeTo', editable: 'always', type: 'date' },
+        ],
+      });
+    const [{ sessionId }] = useContext(authContext);
+    const [dataAbsencess, setDataAbsencess] = useState({
+        data: []
+      });
     const [data, setData] = useState({
         data: []
     });
@@ -83,24 +93,24 @@ export default function WorkerManager() {
     });
     const [state, setState] = useState({
         selectedDays: []
-      });
+    });
 
-      function GetDays(startDate, endDate) {
+    function GetDays(startDate, endDate) {
 
         var retVal = [];
         var current = new Date(startDate);
         var end = new Date(endDate);
         while (current <= end) {
-    
-         retVal.push(new Date(current));
-    
-         current.setDate(current.getDate() + 1);
-    
+
+            retVal.push(new Date(current));
+
+            current.setDate(current.getDate() + 1);
+
         }
-       
+
         return retVal;
-       
-       }
+
+    }
 
     const [{ isLoggedIn }, dispatch] = useContext(authContext);
     const useStyles = makeStyles(theme => ({
@@ -123,48 +133,50 @@ export default function WorkerManager() {
         },
     }));
 
-      useEffect(() => {
-          var reservations = false;
-          var absencess = false;
+    useEffect(() => {
+        var reservations = false;
+        var absencess = false;
         accountApi.getSelfData(sessionId).then((response) => {
             setFormData(response.data);
-            console.log(response.data);
-            console.log(formData)
             reservations = true;
         })
-          .catch((error) => {
-            console.log(error)
-          }).finally(() => {
-            if(reservations){
-                accountApi.getSelfReservations(sessionId).then((response) => {
-                    setData({ data: response.data });
-                    console.log(response);
-                    console.log(data)
-                    absencess = true;
-                })
-                  .catch((error) => {
-                    console.log(error)
-                  }).finally(() => {
-                      if(absencess){}
-                    accountApi.getSelfAbsencess(sessionId)
-                    .then((response) => {
-                      var len = response.data.length; 
-                      const { selectedDays } = state;
-                      var concatedDays = [];
-                      for (var i = 0; i < len; i++) {
-              
-                        var days = GetDays(response.data[i].TimeFrom, response.data[i].TimeTo);
-                        concatedDays = concatedDays.concat(days);
-                      }
-                      setState({ selectedDays: concatedDays });
+            .catch((error) => {
+                console.log(error)
+            }).finally(() => {
+                if (reservations) {
+                    accountApi.getSelfReservations(sessionId).then((response) => {
+                        setData({ data: response.data });
+                        absencess = true;
                     })
-                    .catch((error) => {
-                    })
-                  })
-              }
-          })
-      }, []);
+                        .catch((error) => {
+                            console.log(error)
+                        }).finally(() => {
+                            if (absencess) { }
+                            accountApi.getSelfAbsencess(sessionId)
+                                .then((response) => {
+                                    console.log(response)
+                                    setDataAbsencess({ data: response.data });
+                                    var len = response.data.length;
+                                    var concatedDays = [];
+                                    for (var i = 0; i < len; i++) {
 
+                                        var days = GetDays(response.data[i].TimeFrom, response.data[i].TimeTo);
+                                        concatedDays = concatedDays.concat(days);
+                                    }
+                                    setState({ selectedDays: concatedDays });
+                                })
+                                .catch((error) => {
+                                })
+                        })
+                }
+            })
+    }, []);
+    const modifiersStyles = {
+        selected: {
+          color: 'white',
+          backgroundColor: '#388e3c',
+        }
+      };
     const classes = useStyles();
     return (
         <div>
@@ -172,105 +184,145 @@ export default function WorkerManager() {
                 <Container component="main" maxWidth="300px" >
                     <CssBaseline />
                     <div className={classes.paper}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={4}>
-                                    <Grid item xs={12}>
-                                        <Avatar className={classes.avatar}>
-                                            <AccountCircleIcon />
-                                        </Avatar>
-                                        <Typography component="h1" variant="h5">
-                                            Account information
+                        <Grid container spacing={2}>
+                            <Grid item xs={4}>
+                                <Grid item xs={12}>
+                                    <Avatar className={classes.avatar}>
+                                        <AccountCircleIcon />
+                                    </Avatar>
+                                    <Typography component="h1" variant="h5">
+                                        Account information
                                 </Typography>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            name="FirstName"
-                                            value={formData.FirstName}
-                                            fullWidth
-                                            id="standard-basic"
-                                            label="First Name"
-                                            disabled
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            fullWidth
-                                            id="standard-basic"
-                                            label="Last Name"
-                                            name="LastName"
-                                            value={formData.LastName}
-                                            disabled
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            fullWidth
-                                            id="standard-basic"
-                                            name="username"
-                                            value={formData.Username}
-                                            label="Username"
-                                            disabled
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            fullWidth
-                                            name="Email"
-                                            label="Email"
-                                            value={formData.Email}
-                                            id="standard-basic"
-                                            disabled
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            name="Phone"
-                                            value={formData.Phone}
-                                            label="Phone"
-                                            fullWidth
-                                            id="standard-basic"
-                                            disabled
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            fullWidth
-                                            id="standard-basic"
-                                            name="Birthday"
-                                            value={formData.Birthday}
-                                            label="Birthday"
-                                            disabled
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            fullWidth
-                                            name="EmployeeFrom"
-                                            value={formData.EmployeeFrom}
-                                            label="Employeed"
-                                            id="standard-basic"
-                                            disabled
-                                        />
-                                    </Grid>
                                 </Grid>
-                                <Grid item xs={8}>
-                                <DayPicker
-        selectedDays={state.selectedDays}
-      />
-
+                                <Grid item xs={12}>
+                                    <TextField
+                                        name="FirstName"
+                                        value={formData.FirstName}
+                                        fullWidth
+                                        id="standard-basic"
+                                        label="First Name"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        id="standard-basic"
+                                        label="Last Name"
+                                        name="LastName"
+                                        value={formData.LastName}
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        id="standard-basic"
+                                        name="username"
+                                        value={formData.Username}
+                                        label="Username"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        name="Email"
+                                        label="Email"
+                                        value={formData.Email}
+                                        id="standard-basic"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        name="Phone"
+                                        value={formData.Phone}
+                                        label="Phone"
+                                        fullWidth
+                                        id="standard-basic"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        id="standard-basic"
+                                        name="Birthday"
+                                        value={formData.Birthday}
+                                        label="Birthday"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        name="EmployeeFrom"
+                                        value={formData.EmployeeFrom}
+                                        label="Employeed"
+                                        id="standard-basic"
+                                        disabled
+                                    />
                                 </Grid>
                             </Grid>
-                            <MaterialTable
-                                        title="Your reservations"
-                                        columns={columns.columns}
-                                        icons={tableIcons}
-                                        data={data.data}
-                                        options={{
-                                            search: false
-                                        }}
-                                    />
+                            <Grid item xs={8}>
+                                <MaterialTable
+                                    title="Your reservations"
+                                    columns={columns.columns}
+                                    icons={tableIcons}
+                                    data={data.data}
+                                    options={{
+                                        search: false
+                                    }}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid container item xs={12}>
+                            <Grid item xs={2}>
+                                <DayPicker
+                                    selectedDays={state.selectedDays}
+                                    modifiersStyles={modifiersStyles}
+                                />
+                            </Grid>
+                            <Grid item xs={10}>
+                                <MaterialTable
+                                    columns={columnsAbsencess.columns}
+                                    icons={tableIcons}
+                                    data={dataAbsencess.data}
+                                    options={{
+                                        search: false,
+                                        toolbar: false,
+                                    }}
+                                //   editable={{
+                                //     onRowUpdate: (newData, oldData) =>
+                                //       new Promise(resolve => {
+                                //         resolve();
+                                //         editRequest(newData);
+                                //         if (oldData) {
+                                //           setData(prevState => {
+                                //             const data = [...prevState.data];
+                                //             data[data.indexOf(oldData)] = newData;
+                                //             return { ...prevState, data };
+                                //           });
+                                //         }
+                                //       }),
+                                //     onRowDelete: oldData =>
+                                //       new Promise(resolve => {
+                                //         resolve();
+                                //         deleteRequest(oldData.Id);
+                                //         setData(prevState => {
+                                //           const data = [...prevState.data];
+                                //           data.splice(data.indexOf(oldData), 1);
+                                //           return { ...prevState, data };
+                                //         });
+                                //       }),
+                                //   }}
+                                />
+                            </Grid>
+                        </Grid>
                     </div>
                 </Container>
+
             </Fragment>
         </div>
 

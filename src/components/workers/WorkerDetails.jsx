@@ -3,12 +3,31 @@ import Axios from 'axios';
 import authContext from '../../store';
 import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import MaterialTable from 'material-table';
 
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { forwardRef } from 'react';
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowUpward from '@material-ui/icons/ArrowUpward';
+import Check from '@material-ui/icons/Check';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Remove from '@material-ui/icons/Remove';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+import ViewColumn from '@material-ui/icons/ViewColumn';
+import Container from '@material-ui/core/Container';
+
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -28,7 +47,6 @@ const useStyles = makeStyles(theme => ({
 export default function WorkerDetails(props) {
   const [{ isLoggedIn, error, sessionId }, dispatch] = useContext(authContext);
   const classes = useStyles();
-  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -62,39 +80,85 @@ export default function WorkerDetails(props) {
   const onEmployedDateChange = date => {
     setSelectedEmployedDate(date);
   };
+  const tableIcons: Icons = {
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
+    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+  };
+
+  const [columns] = useState({
+    columns: [
+      { title: 'ID', field: 'Id', editable: 'never' },
+      { title: 'Time from', field: 'TimeFrom', editable: 'always', type: 'date' },
+      { title: 'Time to', field: 'TimeTo', editable: 'always', type: 'date' },
+    ],
+  });
+
+  const [data, setData] = useState({
+    data: []
+  });
 
   function onSubmit(event) {
     event.preventDefault();
-    setLoading(true);
-    console.log(formData);
-    console.log(selectedEmployedDate);
-    console.log(selectedBirthDate);
     var dd = String(selectedBirthDate.getDate()).padStart(2, '0');
     var mm = String(selectedBirthDate.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = selectedBirthDate.getFullYear();
 
-    var birth = yyyy + mm +  dd;
+    var birth = yyyy + mm + dd;
 
     dd = String(selectedEmployedDate.getDate()).padStart(2, '0');
     mm = String(selectedEmployedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
     yyyy = selectedEmployedDate.getFullYear();
     var employed = yyyy + mm + dd;
 
-
-        Axios.put("http://sokres.ddns.net:50101/absence/" + props.value + "/" + birth + "/" + employed, {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": sessionId
-              }
-      })
+    Axios.put("http://sokres.ddns.net:50101/worker/absence/" + props.value + "/" + birth + "/" + employed, {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": sessionId
+      }
+    })
       .then((response) => {
-      console.log(response)
+        console.log(response)
       })
       .catch((error) => {
-      console.log(error)
+        console.log(error)
       })
   }
+
+  const editRequest = (data) => {
+    // workerApi.editWorker(data, sessionId)
+    //   .then((response) => {
+    //     console.log(response.status)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+  };
+
+  const deleteRequest = (data) => {
+    // workerApi.deleteWorker(data)
+    //   .then((response) => {
+    //     console.log(response.status)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+  };
   const [state, setState] = useState({
     selectedDays: []
   });
@@ -113,7 +177,7 @@ export default function WorkerDetails(props) {
   // }
 
   useEffect(() => {
-    Axios.get("http://sokres.ddns.net:50101/worker/current/absences",
+    Axios.get("http://sokres.ddns.net:50101/worker/absences/" + props.value,
       {
         headers: {
           "Accept": "application/json",
@@ -122,7 +186,8 @@ export default function WorkerDetails(props) {
         }
       })
       .then((response) => {
-        var len = response.data.length; 
+        setData({ data: response.data });
+        var len = response.data.length;
         const { selectedDays } = state;
         var concatedDays = [];
         for (var i = 0; i < len; i++) {
@@ -143,64 +208,70 @@ export default function WorkerDetails(props) {
     var end = new Date(endDate);
     while (current <= end) {
 
-     retVal.push(new Date(current));
+      retVal.push(new Date(current));
 
-     current.setDate(current.getDate() + 1);
+      current.setDate(current.getDate() + 1);
 
     }
-   
-    return retVal;
-   
-   }
 
+    return retVal;
+
+  }
+  const modifiersStyles = {
+    selected: {
+      color: 'white',
+      backgroundColor: '#388e3c',
+    }
+  };
   return (
     <div>
-      <DayPicker
-        selectedDays={state.selectedDays}
-      />
-      <Fragment>
-        {error && <p className="error">{error}</p>}
-        <form onSubmit={onSubmit}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justify="space-around">
-              <KeyboardDatePicker
-                margin="normal"
-                id="date-picker-dialog"
-                name="BirthDay"
-                label="Birthday"
-                format="yyyy/MM/dd"
-                value={selectedBirthDate}
-                onChange={onBirthDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
-              <KeyboardDatePicker
-                margin="normal"
-                id="date-picker-dialog"
-                name="Employed"
-                label="Date picker dialog"
-                format="yyyy/MM/dd"
-                value={selectedEmployedDate}
-                onChange={onEmployedDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
-            </Grid>
-          </MuiPickersUtilsProvider>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            className={classes.button}
-            startIcon={<SaveIcon />}
-            type="submit"
-          >
-            Save
-      </Button>
-        </form>
-      </Fragment>
+    <Container component="main" maxWidth="300px" >
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <DayPicker
+            selectedDays={state.selectedDays}
+            modifiersStyles={modifiersStyles}
+          />
+        </Grid>
+        <Grid item xs={10}>
+          <Fragment>
+            <MaterialTable
+              columns={columns.columns}
+              icons={tableIcons}
+              data={data.data}
+              options={{
+                search: false,
+                toolbar: false,
+              }}
+              editable={{
+                onRowUpdate: (newData, oldData) =>
+                  new Promise(resolve => {
+                    resolve();
+                    editRequest(newData);
+                    if (oldData) {
+                      setData(prevState => {
+                        const data = [...prevState.data];
+                        data[data.indexOf(oldData)] = newData;
+                        return { ...prevState, data };
+                      });
+                    }
+                  }),
+                onRowDelete: oldData =>
+                  new Promise(resolve => {
+                    resolve();
+                    deleteRequest(oldData.Id);
+                    setData(prevState => {
+                      const data = [...prevState.data];
+                      data.splice(data.indexOf(oldData), 1);
+                      return { ...prevState, data };
+                    });
+                  }),
+              }}
+            />
+          </Fragment>
+        </Grid>
+      </Grid>
+      </Container>
     </div>
   );
 }

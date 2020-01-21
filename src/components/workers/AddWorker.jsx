@@ -13,6 +13,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,18 +64,6 @@ export default function AddWorker() {
 
   function onSubmit(event) {
     event.preventDefault();
-    console.log(selectedEmployedDate);
-    console.log(selectedBirthDate);
-    // var dd = String(selectedBirthDate.getDate()).padStart(2, '0');
-    // var mm = String(selectedBirthDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-    // var yyyy = selectedBirthDate.getFullYear();
-
-    // var birth = yyyy + '-' + mm + '-' + dd;
-
-    // dd = String(selectedEmployedDate.getDate()).padStart(2, '0');
-    // mm = String(selectedEmployedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-    // yyyy = selectedEmployedDate.getFullYear();
-    // var employed = yyyy + '-' + mm + '-' + dd;
     workerApi.addWorker(formData, sessionId, selectedBirthDate, selectedEmployedDate)
       .then((response) => {
         console.log(response)
@@ -90,97 +79,124 @@ export default function AddWorker() {
       <Fragment>
         {error && <p className="error">{error}</p>}
         <form onSubmit={onSubmit}>
+        <Container component="main" maxWidth="300px" >
+
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justify="space-around">
-              <TextField
-                required
-                id="outlined-required"
-                label="username"
-                name="username"
-                variant="outlined"
-                value={formData.username}
-                onChange={onChange}
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="Email"
-                name="Email"
-                variant="outlined"
-                value={formData.Email}
-                onChange={onChange}
-              />
-              <TextField
-                required
-                id="outlined-password-input"
-                label="Password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                value={formData.password}
-                onChange={onChange}
-                variant="outlined"
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="First Name"
-                name="FirstName"
-                variant="outlined"
-                value={formData.FirstName}
-                onChange={onChange}
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="Pesel"
-                name="Pesel"
-                variant="outlined"
-                value={formData.Pesel}
-                onChange={onChange}
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="Last name"
-                name="LastName"
-                variant="outlined"
-                value={formData.LastName}
-                onChange={onChange}
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="Phone"
-                name="Phone"
-                variant="outlined"
-                value={formData.Phone}
-                onChange={onChange}
-              />
-              <KeyboardDatePicker
-                margin="normal"
-                id="date-picker-dialog"
-                name="BirthDay"
-                label="Birthday"
-                format="dd/MM/yyyy"
-                value={selectedBirthDate}
-                onChange={onBirthDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
-              <KeyboardDatePicker
-                margin="normal"
-                id="date-picker-dialog"
-                name="Employed"
-                label="Date picker dialog"
-                format="dd/MM/yyyy"
-                value={selectedEmployedDate}
-                onChange={onEmployedDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
+            <Grid container xs="12" >
+              <Grid container item xs="4" >
+              <Grid item xs="6" alignContent="right" alignItems="right">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="username"
+                  name="username"
+                  variant="outlined"
+                  fullWidth
+                  value={formData.username}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs="12">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Email"
+                  name="Email"
+                  variant="outlined"
+                  value={formData.Email}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs="12">
+                <TextField
+                  required
+                  id="outlined-password-input"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  value={formData.password}
+                  onChange={onChange}
+                  variant="outlined"
+                />
+              </Grid>
+              </Grid>
+              <Grid container xs="4">
+              <Grid xs="12">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="First Name"
+                  name="FirstName"
+                  variant="outlined"
+                  value={formData.FirstName}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid xs="12">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Pesel"
+                  name="Pesel"
+                  variant="outlined"
+                  value={formData.Pesel}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid xs="12">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Last name"
+                  name="LastName"
+                  variant="outlined"
+                  value={formData.LastName}
+                  onChange={onChange}
+                />
+              </Grid>
+              </Grid>
+              <Grid container xs="4">
+              <Grid xs="12">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Phone"
+                  name="Phone"
+                  variant="outlined"
+                  value={formData.Phone}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid xs="12">
+                <KeyboardDatePicker
+                  margin="normal"
+                  id="date-picker-dialog"
+                  name="BirthDay"
+                  label="Birthday"
+                  format="dd/MM/yyyy"
+                  value={selectedBirthDate}
+                  onChange={onBirthDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+              </Grid>
+              <Grid xs="12">
+                <KeyboardDatePicker
+                  margin="normal"
+                  id="date-picker-dialog"
+                  name="Employed"
+                  label="Date picker dialog"
+                  format="dd/MM/yyyy"
+                  value={selectedEmployedDate}
+                  onChange={onEmployedDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+              </Grid>
+              </Grid>
             </Grid>
           </MuiPickersUtilsProvider>
           <Button
@@ -193,6 +209,8 @@ export default function AddWorker() {
           >
             Save
       </Button>
+      </Container>
+
         </form>
       </Fragment>
     </div>
