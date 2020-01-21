@@ -115,7 +115,7 @@ export default function WorkerManager() {
     const [{ isLoggedIn }, dispatch] = useContext(authContext);
     const useStyles = makeStyles(theme => ({
         paper: {
-            marginTop: theme.spacing(8),
+            marginTop: theme.spacing(2),
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -132,7 +132,25 @@ export default function WorkerManager() {
             margin: theme.spacing(3, 0, 2),
         },
     }));
-
+    const editRequest = (data) => {
+        // workerApi.editWorker(data, sessionId)
+        //   .then((response) => {
+        //     console.log(response.status)
+        //   })
+        //   .catch((error) => {
+        //     console.log(error)
+        //   })
+      };
+    
+      const deleteRequest = (data) => {
+        // workerApi.deleteWorker(data)
+        //   .then((response) => {
+        //     console.log(response.status)
+        //   })
+        //   .catch((error) => {
+        //     console.log(error)
+        //   })
+      };
     useEffect(() => {
         var reservations = false;
         var absencess = false;
@@ -185,7 +203,7 @@ export default function WorkerManager() {
                     <CssBaseline />
                     <div className={classes.paper}>
                         <Grid container spacing={2}>
-                            <Grid item xs={4}>
+                            <Grid item xs={2}>
                                 <Grid item xs={12}>
                                     <Avatar className={classes.avatar}>
                                         <AccountCircleIcon />
@@ -279,7 +297,7 @@ export default function WorkerManager() {
                                     />
                                 </Grid>
                             </Grid>
-                            <Grid item xs={8}>
+                            <Grid item xs={10}>
                                 <MaterialTable
                                     title="Your reservations"
                                     columns={columns.columns}
@@ -291,7 +309,11 @@ export default function WorkerManager() {
                                 />
                             </Grid>
                         </Grid>
+
                         <Grid container item xs={12}>
+                        <Grid item xs={12}>
+                            <br/>
+                        </Grid>
                             <Grid item xs={2}>
                                 <DayPicker
                                     selectedDays={state.selectedDays}
@@ -303,34 +325,44 @@ export default function WorkerManager() {
                                     columns={columnsAbsencess.columns}
                                     icons={tableIcons}
                                     data={dataAbsencess.data}
+                                    title="Your absencess"
                                     options={{
-                                        search: false,
-                                        toolbar: false,
                                     }}
-                                //   editable={{
-                                //     onRowUpdate: (newData, oldData) =>
-                                //       new Promise(resolve => {
-                                //         resolve();
-                                //         editRequest(newData);
-                                //         if (oldData) {
-                                //           setData(prevState => {
-                                //             const data = [...prevState.data];
-                                //             data[data.indexOf(oldData)] = newData;
-                                //             return { ...prevState, data };
-                                //           });
-                                //         }
-                                //       }),
-                                //     onRowDelete: oldData =>
-                                //       new Promise(resolve => {
-                                //         resolve();
-                                //         deleteRequest(oldData.Id);
-                                //         setData(prevState => {
-                                //           const data = [...prevState.data];
-                                //           data.splice(data.indexOf(oldData), 1);
-                                //           return { ...prevState, data };
-                                //         });
-                                //       }),
-                                //   }}
+                                  editable={{
+                                    onRowAdd: newData =>
+                                    new Promise((resolve, reject) => {
+                                        setTimeout(() => {
+                                            {
+                                                /* const data = this.state.data;
+                                                data.push(newData);
+                                                this.setState({ data }, () => resolve()); */
+                                            }
+                                            resolve();
+                                        }, 1000);
+                                    }),
+                                    onRowUpdate: (newData, oldData) =>
+                                      new Promise(resolve => {
+                                        resolve();
+                                        editRequest(newData);
+                                        if (oldData) {
+                                          setData(prevState => {
+                                            const data = [...prevState.data];
+                                            data[data.indexOf(oldData)] = newData;
+                                            return { ...prevState, data };
+                                          });
+                                        }
+                                      }),
+                                    onRowDelete: oldData =>
+                                      new Promise(resolve => {
+                                        resolve();
+                                        deleteRequest(oldData.Id);
+                                        setData(prevState => {
+                                          const data = [...prevState.data];
+                                          data.splice(data.indexOf(oldData), 1);
+                                          return { ...prevState, data };
+                                        });
+                                      }),
+                                  }}
                                 />
                             </Grid>
                         </Grid>
