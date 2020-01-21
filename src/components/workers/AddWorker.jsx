@@ -65,16 +65,16 @@ export default function AddWorker() {
     event.preventDefault();
     console.log(selectedEmployedDate);
     console.log(selectedBirthDate);
-    var dd = String(selectedBirthDate.getDate()).padStart(2, '0');
-    var mm = String(selectedBirthDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = selectedBirthDate.getFullYear();
+    // var dd = String(selectedBirthDate.getDate()).padStart(2, '0');
+    // var mm = String(selectedBirthDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+    // var yyyy = selectedBirthDate.getFullYear();
 
-    var birth = yyyy + '-' + mm + '-' + dd;
+    // var birth = yyyy + '-' + mm + '-' + dd;
 
-    dd = String(selectedEmployedDate.getDate()).padStart(2, '0');
-    mm = String(selectedEmployedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-    yyyy = selectedEmployedDate.getFullYear();
-    var employed = yyyy + '-' + mm + '-' + dd;
+    // dd = String(selectedEmployedDate.getDate()).padStart(2, '0');
+    // mm = String(selectedEmployedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+    // yyyy = selectedEmployedDate.getFullYear();
+    // var employed = yyyy + '-' + mm + '-' + dd;
     workerApi.addWorker(formData, sessionId, selectedBirthDate, selectedEmployedDate)
       .then((response) => {
         console.log(response)

@@ -43,11 +43,11 @@ function deleteWorker(data, sessionId) {
 }
 
 function addWorker(data, sessionId, selectedBirthDate, selectedEmployedDate) {
-    Axios.post("http://sokres.ddns.net:50101/worker/add",
+    return Axios.post("http://sokres.ddns.net:50101/worker/add",
       {
         "FirstName": "tomasz",
         "LastName": "falenczyk",
-        "Pesel": "12312312",
+        "Pesel": "94081359995",
         "Birthday": selectedBirthDate,
         "Phone": "123123123",
         "Employed": selectedEmployedDate,

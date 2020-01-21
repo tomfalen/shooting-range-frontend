@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect, Fragment } from 'react';
 import MaterialTable from 'material-table';
+import DayPicker, { DateUtils } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
 import { forwardRef } from 'react';
 import AddBox from '@material-ui/icons/AddBox';
@@ -79,6 +81,27 @@ export default function WorkerManager() {
         Username: '',
         Email: ''
     });
+    const [state, setState] = useState({
+        selectedDays: []
+      });
+
+      function GetDays(startDate, endDate) {
+
+        var retVal = [];
+        var current = new Date(startDate);
+        var end = new Date(endDate);
+        while (current <= end) {
+    
+         retVal.push(new Date(current));
+    
+         current.setDate(current.getDate() + 1);
+    
+        }
+       
+        return retVal;
+       
+       }
+
     const [{ isLoggedIn }, dispatch] = useContext(authContext);
     const useStyles = makeStyles(theme => ({
         paper: {
@@ -101,19 +124,46 @@ export default function WorkerManager() {
     }));
 
       useEffect(() => {
+          var reservations = false;
+          var absencess = false;
         accountApi.getSelfData(sessionId).then((response) => {
             setFormData(response.data);
             console.log(response.data);
             console.log(formData)
+            reservations = true;
         })
           .catch((error) => {
             console.log(error)
+          }).finally(() => {
+            if(reservations){
+                accountApi.getSelfReservations(sessionId).then((response) => {
+                    setData({ data: response.data });
+                    console.log(response);
+                    console.log(data)
+                    absencess = true;
+                })
+                  .catch((error) => {
+                    console.log(error)
+                  }).finally(() => {
+                      if(absencess){}
+                    accountApi.getSelfAbsencess(sessionId)
+                    .then((response) => {
+                      var len = response.data.length; 
+                      const { selectedDays } = state;
+                      var concatedDays = [];
+                      for (var i = 0; i < len; i++) {
+              
+                        var days = GetDays(response.data[i].TimeFrom, response.data[i].TimeTo);
+                        concatedDays = concatedDays.concat(days);
+                      }
+                      setState({ selectedDays: concatedDays });
+                    })
+                    .catch((error) => {
+                    })
+                  })
+              }
           })
-
-
       }, []);
-
-
 
     const classes = useStyles();
     return (
@@ -204,7 +254,13 @@ export default function WorkerManager() {
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={8}>
-                                    <MaterialTable
+                                <DayPicker
+        selectedDays={state.selectedDays}
+      />
+
+                                </Grid>
+                            </Grid>
+                            <MaterialTable
                                         title="Your reservations"
                                         columns={columns.columns}
                                         icons={tableIcons}
@@ -213,8 +269,6 @@ export default function WorkerManager() {
                                             search: false
                                         }}
                                     />
-                                </Grid>
-                            </Grid>
                     </div>
                 </Container>
             </Fragment>
