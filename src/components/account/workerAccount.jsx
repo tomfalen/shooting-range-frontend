@@ -67,15 +67,15 @@ export default function WorkerManager() {
 
     const [columnsAbsencess] = useState({
         columns: [
-          { title: 'ID', field: 'Id', editable: 'never' },
-          { title: 'Time from', field: 'TimeFrom', editable: 'always', type: 'date' },
-          { title: 'Time to', field: 'TimeTo', editable: 'always', type: 'date' },
+            { title: 'ID', field: 'Id', editable: 'never' },
+            { title: 'Time from', field: 'TimeFrom', editable: 'always', type: 'date' },
+            { title: 'Time to', field: 'TimeTo', editable: 'always', type: 'date' },
         ],
-      });
+    });
     const [{ sessionId }] = useContext(authContext);
     const [dataAbsencess, setDataAbsencess] = useState({
         data: []
-      });
+    });
     const [data, setData] = useState({
         data: []
     });
@@ -114,6 +114,19 @@ export default function WorkerManager() {
 
     const [{ isLoggedIn }, dispatch] = useContext(authContext);
     const useStyles = makeStyles(theme => ({
+        smallMenu: {
+            background: 'white',
+            boxShadow: '3px 6px 19px 6px #888888',
+            margin: theme.spacing(0, 5, 0),
+            padding: theme.spacing(4, 4, 4, 4),
+            borderRadius: 5
+        },
+        bigMenu: {
+            background: 'white',
+            boxShadow: '3px 6px 19px 6px #888888',
+            borderRadius: 5,
+            padding: theme.spacing(2, 2, 2, 2),
+        },
         paper: {
             marginTop: theme.spacing(2),
             display: 'flex',
@@ -140,9 +153,9 @@ export default function WorkerManager() {
         //   .catch((error) => {
         //     console.log(error)
         //   })
-      };
-    
-      const deleteRequest = (data) => {
+    };
+
+    const deleteRequest = (data) => {
         // workerApi.deleteWorker(data)
         //   .then((response) => {
         //     console.log(response.status)
@@ -150,7 +163,7 @@ export default function WorkerManager() {
         //   .catch((error) => {
         //     console.log(error)
         //   })
-      };
+    };
     useEffect(() => {
         var reservations = false;
         var absencess = false;
@@ -191,145 +204,146 @@ export default function WorkerManager() {
     }, []);
     const modifiersStyles = {
         selected: {
-          color: 'white',
-          backgroundColor: '#388e3c',
+            color: 'white',
+            backgroundColor: '#388e3c',
         }
-      };
+    };
     const classes = useStyles();
     return (
         <div>
             <Fragment>
-                <Container component="main" maxWidth="300px" >
-                    <CssBaseline />
-                    <div className={classes.paper}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={2}>
-                                <Grid item xs={12}>
-                                    <Avatar className={classes.avatar}>
-                                        <AccountCircleIcon />
-                                    </Avatar>
-                                    <Typography component="h1" variant="h5">
-                                        Account information
-                                </Typography>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        name="FirstName"
-                                        value={formData.FirstName}
-                                        fullWidth
-                                        id="standard-basic"
-                                        label="First Name"
-                                        InputProps={{
-                                            readOnly: true,
-                                          }}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        id="standard-basic"
-                                        label="Last Name"
-                                        name="LastName"
-                                        value={formData.LastName}
-                                        InputProps={{
-                                            readOnly: true,
-                                          }}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        id="standard-basic"
-                                        name="username"
-                                        value={formData.Username}
-                                        label="Username"
-                                        InputProps={{
-                                            readOnly: true,
-                                          }}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        name="Email"
-                                        label="Email"
-                                        value={formData.Email}
-                                        id="standard-basic"
-                                        InputProps={{
-                                            readOnly: true,
-                                          }}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        name="Phone"
-                                        value={formData.Phone}
-                                        label="Phone"
-                                        fullWidth
-                                        id="standard-basic"
-                                        InputProps={{
-                                            readOnly: true,
-                                          }}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        id="standard-basic"
-                                        name="Birthday"
-                                        value={formData.Birthday}
-                                        label="Birthday"
-                                        InputProps={{
-                                            readOnly: true,
-                                          }}
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        name="EmployeeFrom"
-                                        value={formData.EmployeeFrom}
-                                        label="Employeed"
-                                        id="standard-basic"
-                                        InputProps={{
-                                            readOnly: true,
-                                          }}
-                                    />
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={10}>
-                                <MaterialTable
-                                    title="Your reservations"
-                                    columns={columns.columns}
-                                    icons={tableIcons}
-                                    data={data.data}
-                                    options={{
-                                        search: false
-                                    }}
-                                />
-                            </Grid>
-                        </Grid>
+                <CssBaseline />
+                <Grid container>
 
-                        <Grid container item xs={12}>
+                    <Grid item xs={2} className={classes.smallMenu}>
                         <Grid item xs={12}>
-                            <br/>
+                            <Avatar className={classes.avatar}>
+                                <AccountCircleIcon />
+                            </Avatar>
+                            <Typography component="h1" variant="h5">
+                                Account information
+                                </Typography>
                         </Grid>
-                            <Grid item xs={2}>
-                                <DayPicker
-                                    selectedDays={state.selectedDays}
-                                    modifiersStyles={modifiersStyles}
-                                />
-                            </Grid>
-                            <Grid item xs={10}>
-                                <MaterialTable
-                                    columns={columnsAbsencess.columns}
-                                    icons={tableIcons}
-                                    data={dataAbsencess.data}
-                                    title="Your absencess"
-                                    options={{
-                                    }}
-                                  editable={{
-                                    onRowAdd: newData =>
+                        <Grid item xs={12} spacing={2}>
+                            <TextField
+                                name="FirstName"
+                                value={formData.FirstName}
+                                fullWidth
+                                id="standard-basic"
+                                label="First Name"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                id="standard-basic"
+                                label="Last Name"
+                                name="LastName"
+                                value={formData.LastName}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                id="standard-basic"
+                                name="username"
+                                value={formData.Username}
+                                label="Username"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                name="Email"
+                                label="Email"
+                                value={formData.Email}
+                                id="standard-basic"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                name="Phone"
+                                value={formData.Phone}
+                                label="Phone"
+                                fullWidth
+                                id="standard-basic"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                id="standard-basic"
+                                name="Birthday"
+                                value={formData.Birthday}
+                                label="Birthday"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                name="EmployeeFrom"
+                                value={formData.EmployeeFrom}
+                                label="Employeed"
+                                id="standard-basic"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={9} className={classes.bigMenu}>
+                        <MaterialTable
+                            title="Your reservations"
+                            columns={columns.columns}
+                            icons={tableIcons}
+                            data={data.data}
+                            options={{
+                                search: false
+                            }}
+                        />
+                    </Grid>
+                </Grid>
+
+                <Grid container item xs={12}>
+                    <Grid item xs={12}>
+                        <br />
+                    </Grid>
+                    <Grid item xs={2} className={classes.smallMenu}>
+                        <DayPicker
+                            selectedDays={state.selectedDays}
+                            modifiersStyles={modifiersStyles}
+                            className={classes.smallMenu}
+                        />
+                    </Grid>
+                    <Grid item xs={9} className={classes.bigMenu}>
+                        <MaterialTable
+                            columns={columnsAbsencess.columns}
+                            icons={tableIcons}
+                            data={dataAbsencess.data}
+                            title="Your absencess"
+                            options={{
+                            }}
+                            editable={{
+                                onRowAdd: newData =>
                                     new Promise((resolve, reject) => {
                                         setTimeout(() => {
                                             {
@@ -340,34 +354,32 @@ export default function WorkerManager() {
                                             resolve();
                                         }, 1000);
                                     }),
-                                    onRowUpdate: (newData, oldData) =>
-                                      new Promise(resolve => {
+                                onRowUpdate: (newData, oldData) =>
+                                    new Promise(resolve => {
                                         resolve();
                                         editRequest(newData);
                                         if (oldData) {
-                                          setData(prevState => {
-                                            const data = [...prevState.data];
-                                            data[data.indexOf(oldData)] = newData;
-                                            return { ...prevState, data };
-                                          });
+                                            setData(prevState => {
+                                                const data = [...prevState.data];
+                                                data[data.indexOf(oldData)] = newData;
+                                                return { ...prevState, data };
+                                            });
                                         }
-                                      }),
-                                    onRowDelete: oldData =>
-                                      new Promise(resolve => {
+                                    }),
+                                onRowDelete: oldData =>
+                                    new Promise(resolve => {
                                         resolve();
                                         deleteRequest(oldData.Id);
                                         setData(prevState => {
-                                          const data = [...prevState.data];
-                                          data.splice(data.indexOf(oldData), 1);
-                                          return { ...prevState, data };
+                                            const data = [...prevState.data];
+                                            data.splice(data.indexOf(oldData), 1);
+                                            return { ...prevState, data };
                                         });
-                                      }),
-                                  }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </div>
-                </Container>
+                                    }),
+                            }}
+                        />
+                    </Grid>
+                </Grid>
 
             </Fragment>
         </div>

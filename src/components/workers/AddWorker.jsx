@@ -28,6 +28,10 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 50,
     background: 'white'
   },
+  gridContainer: {
+    marginBottom: 50,
+    background: 'white'
+  },
 }));
 
 export default function AddWorker() {
@@ -83,141 +87,131 @@ export default function AddWorker() {
     <div>
       <Fragment >
         <form onSubmit={onSubmit} className={classes.workerComp}>
-          <Container component="main" maxWidth="300px" >
 
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Typography component="h1" variant="h5">
-                Add new user
-                                </Typography>
-              <Grid container xs="12" >
-                <Grid container item xs="2" >
-                  <Grid item xs="12" alignContent="right" alignItems="right">
-                    <TextField
-                      required
-                      id="outlined-required"
-                      label="username"
-                      name="username"
-                      value={formData.username}
-                      onChange={onChange}
-                    />
-                  </Grid>
-                  <Grid item xs="12">
-                    <TextField
-                      required
-                      id="outlined-required"
-                      label="Email"
-                      name="Email"
-                      value={formData.Email}
-                      onChange={onChange}
-                    />
-                  </Grid>
-                  <Grid item xs="12">
-                    <TextField
-                      required
-                      id="outlined-password-input"
-                      label="Password"
-                      name="password"
-                      type="password"
-                      autoComplete="current-password"
-                      value={formData.password}
-                      onChange={onChange}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid container xs="2">
-                  <Grid xs="12">
-                    <TextField
-                      required
-                      id="outlined-required"
-                      label="First Name"
-                      name="FirstName"
-                      value={formData.FirstName}
-                      onChange={onChange}
-                    />
-                  </Grid>
-                  <Grid xs="12">
-                    <TextField
-                      required
-                      id="outlined-required"
-                      label="Pesel"
-                      name="Pesel"
-                      value={formData.Pesel}
-                      onChange={onChange}
-                    />
-                  </Grid>
-                  <Grid xs="12">
-                    <TextField
-                      required
-                      id="outlined-required"
-                      label="Last name"
-                      name="LastName"
-                      value={formData.LastName}
-                      onChange={onChange}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid container xs="2">
-                  <Grid xs="12">
-                    <TextField
-                      required
-                      id="outlined-required"
-                      label="Phone"
-                      name="Phone"
-                      value={formData.Phone}
-                      onChange={onChange}
-                    />
-                  </Grid>
-                  <Grid xs="12">
-                    <KeyboardDatePicker
-                      margin="normal"
-                      id="date-picker-dialog"
-                      name="BirthDay"
-                      label="Birthday"
-                      format="dd/MM/yyyy"
-                      value={selectedBirthDate}
-                      onChange={onBirthDateChange}
-                      KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                      }}
-                    />
-                  </Grid>
-                  <Grid xs="12">
-                    <KeyboardDatePicker
-                      margin="normal"
-                      id="date-picker-dialog"
-                      name="Employed"
-                      label="Date picker dialog"
-                      format="dd/MM/yyyy"
-                      value={selectedEmployedDate}
-                      onChange={onEmployedDateChange}
-                      KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                      }}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid xs='12'>
-
-                  <Grid xs='2'>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      className={classes.button}
-                      startIcon={<SaveIcon />}
-                      type="submit"
-                      fullWidth
-                    >
-                      Save
-                   </Button>
-                  </Grid>
-                </Grid>
-
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Typography component="h1" variant="h5">
+              Add new worker
+              </Typography>
+            <Grid container xs="12" className={classes.gridContainer} spacing="3">
+              <Grid item xs="4" >
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={onChange}
+                />
               </Grid>
-            </MuiPickersUtilsProvider>
+              <Grid item xs="4">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Email"
+                  name="Email"
+                  value={formData.Email}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs="4">
+                <TextField
+                  required
+                  id="outlined-password-input"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  value={formData.password}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs="4">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="First Name"
+                  name="FirstName"
+                  value={formData.FirstName}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs="4">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Pesel"
+                  name="Pesel"
+                  value={formData.Pesel}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs="4">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Last name"
+                  name="LastName"
+                  value={formData.LastName}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item xs="4">
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Phone"
+                  name="Phone"
+                  value={formData.Phone}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid  xs="4">
+                <KeyboardDatePicker
+                  margin="normal"
+                  id="date-picker-dialog"
+                  name="BirthDay"
+                  label="Birthday"
+                  format="dd/MM/yyyy"
+                  value={selectedBirthDate}
+                  onChange={onBirthDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+              </Grid>
+              <Grid  xs="4">
+                <KeyboardDatePicker
+                  margin="normal"
+                  id="date-picker-dialog"
+                  name="Employed"
+                  label="Date picker dialog"
+                  format="dd/MM/yyyy"
+                  value={selectedEmployedDate}
+                  onChange={onEmployedDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+              </Grid>
+            </Grid>
 
-          </Container>
+            <Grid container xs='12' spacing="4">
+              <Grid item xs='4'>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  className={classes.button}
+                  startIcon={<SaveIcon />}
+                  type="submit"
+                  fullWidth
+                >
+                  Save
+                   </Button>
+              </Grid>
+            </Grid>
 
+          </MuiPickersUtilsProvider>
         </form>
       </Fragment>
     </div>

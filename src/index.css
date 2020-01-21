@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh !important;
+  background: #eeeeee !important;
+
 }
 
 code {
@@ -14,4 +17,12 @@ code {
 
 .MuiContainer-root{
   background-color: white;
+}
+
+#root {
+  height: 100vh;
+}
+
+#main {
+  height: 100vh;
 }

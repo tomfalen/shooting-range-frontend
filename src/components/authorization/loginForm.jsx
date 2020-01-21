@@ -22,7 +22,7 @@ const LoginForm = () => {
 			marginTop: theme.spacing(8),
 			display: 'flex',
 			flexDirection: 'column',
-			alignItems: 'center',
+			alignItems: 'center'
 		},
 		avatar: {
 			margin: theme.spacing(1),
@@ -79,7 +79,7 @@ const LoginForm = () => {
 			) : (
 					<Fragment>
 						{error && <p className="error">{error}</p>}
-							<Container component="main" maxWidth="xs">
+							<Container component="main" className={'loginForm'} maxWidth="xs">
 								<CssBaseline />
 								<div className={classes.paper}>
 									<Avatar className={classes.avatar}>

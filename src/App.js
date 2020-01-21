@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing(7),
+
   },
 }));
 
@@ -64,7 +65,7 @@ function App() {
   return (
     <Provider value={useAuthState}>
       <ThemeProvider theme={theme}>
-        <div >
+        <div>
           <Snackbar classes={classes} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={hasErrors} autoHideDuration={6000} onClose={() => setHasErrors(false)}>
             <Alert severity="error">{errorMessage}</Alert>
           </Snackbar>

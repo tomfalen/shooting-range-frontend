@@ -95,9 +95,12 @@ export default function WorkerManager() {
 
   return (
     <div>
+      <div class="addWorker">
       <AddWorker />
+      </div>
+      <div class="workerList">
       <MaterialTable
-        title="Editable Example"
+        title="Worker table"
         columns={columns.columns}
         icons={tableIcons}
         data={data.data}
@@ -139,6 +142,7 @@ export default function WorkerManager() {
             }),
         }}
       />
+      </div>
     </div>
   );
 }
