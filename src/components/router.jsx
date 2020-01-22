@@ -7,6 +7,7 @@ import LoginForm from './authorization/loginForm';
 import RegisterForm from './authorization/registerForm';
 import WorkerManager from './workers/WorkerManager';
 import WorkerAccount from './account/workerAccount';
+import ClientDashboard from "./client/Dashboard";
 
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -75,6 +76,9 @@ const Navigation = () => {
 							<p>
 								{true ? (
 									<p>
+									<Button color="inherit" component={Link} to="/ClientDashboard">
+										Client
+									</Button>
 									<Button color="inherit" component={Link} to="/WorkerManager">
 										WorkerManager
 									</Button>
@@ -110,6 +114,7 @@ const Navigation = () => {
 					<Route exact path="/login" component={LoginForm} />
 					<Route exact path="/register" component={RegisterForm} />
 					<Route exact path="/WorkerManager" component={WorkerManager} />
+					<Route exact path="/ClientDashboard" component={ClientDashboard} />
 				</Switch>
 			</Router>
 		</section>
