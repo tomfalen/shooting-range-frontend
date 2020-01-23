@@ -50,6 +50,7 @@ export default function GlobalInformation() {
     useEffect(() => {
         GetObjectOpenHours();
         GetObjectHolidays();
+        GetIsOpenObject(openDayFormData.Day);
     }, []);
 
     function GetObjectOpenHours() {
@@ -180,7 +181,7 @@ export default function GlobalInformation() {
                         }}
                     />
                     <Paper elevation={3} className={classes.root}>
-                            <Grid container justify="center">
+                            <Grid container justify="center" spacing={3}>
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <Grid item xs={12}>
                                         <Typography variant="h6">
