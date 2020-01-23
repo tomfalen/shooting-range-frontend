@@ -8,7 +8,16 @@ import Typography from "@material-ui/core/Typography";
 export default function ClientShow() {
     const [{ sessionId }] = useContext(authContext);
     const [clientData, setClientData] = useState({
-        data: []
+        data: {
+            FirstName: '',
+            LastName: '',
+            GunPermissionNumber: '',
+            GunPermissionPublisher: '',
+            PerceptorIdentityNumber: '',
+            PerceptorIdentityPublisher: '',
+            Email: '',
+            AcceptedRegulationsId: ''
+        }
     });
 
     useEffect(() => {

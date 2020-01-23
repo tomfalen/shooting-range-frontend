@@ -23,6 +23,8 @@ import ClientReservations from "./ClientReservations";
 import ClientAddReservation from "./ClientAddReservation";
 import ClientHistory from "./ClientHistory";
 import ClientRegulations from "./ClientRegulations";
+import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import GlobalInformation from "./GlobalInformation";
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -62,7 +64,7 @@ export default function Dashboard() {
     const [{ sessionId }] = useContext(authContext);
     const classes = useStyles();
     const [selectItem, setSelectItem] = useState(
-        'ACCOUNT'
+        'DASHBOARD'
     );
     const [clientData, setClientData] = useState({
         data: []
@@ -81,6 +83,9 @@ export default function Dashboard() {
         })
     }
 
+    const setDashboardActive = () => {
+        setSelectItem('DASHBOARD');
+    };
     const setAccountActive = () => {
         setSelectItem('ACCOUNT');
     };
@@ -117,6 +122,12 @@ export default function Dashboard() {
                     <ListItemText primary={clientData.data.FirstName} secondary={clientData.data.LastName} />
                 </ListItem>
                 <Divider />
+                <ListItem button onClick={setDashboardActive}>
+                    <ListItemIcon>
+                        <DashboardOutlinedIcon style={{ color: "black" }} />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
+                </ListItem>
                 <ListItem button onClick={setAccountActive}>
                     <ListItemIcon>
                         <PermIdentityOutlinedIcon style={{ color: "black" }} />
@@ -168,8 +179,11 @@ export default function Dashboard() {
                             <ClientAddReservation/>
                         ) : (selectItem == 'HISTORY' ? (
                             <ClientHistory/>
-                        ) : (
+                        ) : (selectItem == 'REGULATIONS' ? (
                             <ClientRegulations/>
+                        ) : (
+                            <GlobalInformation/>
+                        )
                         )
                         )
                         )

@@ -16,14 +16,7 @@ import ArrowUpward from "@material-ui/icons/ArrowUpward";
 export default function ClientReservations() {
     const [{ sessionId }] = useContext(authContext);
     const [reservationData, setReservationData] = useState({
-        data: [
-            {
-                Id: '1'
-            },
-            {
-                Id: '2'
-            }
-        ]
+        data: []
     });
     const [reservationColumns] = useState({
         columns: [

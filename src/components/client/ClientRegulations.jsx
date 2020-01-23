@@ -3,11 +3,12 @@ import api from "./api";
 import authContext from "../../store";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import XMLToReact from '@condenast/xml-to-react';
 
 export default function ClientRegulations() {
     const [{ sessionId }] = useContext(authContext);
     const [clientRegulations, setClientRegulations] = useState({
-        data: []
+        data: ''
     });
 
     useEffect(() => {
@@ -17,10 +18,32 @@ export default function ClientRegulations() {
     function GetClientAccteptedRegulations() {
         api.getAcceptedRegulations(sessionId)
             .then((response) => {
-                setClientRegulations({ data: response.data });
+                setClientRegulations({ data: response.data.substr(response.data.indexOf('<regulations>'), response.data.indexOf('</regulations>')) });
             }).catch((error) => {
             console.log(error)
         })
+    }
+
+    const xmlToReact = new XMLToReact({
+        regulations: (attrs) => ({ type: RegulationTag, props: attrs }),
+        chapter: (attrs) => ({ type: ChapterTag, props: attrs }),
+        point: (attrs) => ({ type: PointTag, props: attrs })
+    });
+
+    const regulations = xmlToReact.convert(
+        clientRegulations.data
+    );
+
+    function RegulationTag({children}) {
+        return <div>{children}</div>;
+    }
+
+    function ChapterTag({title, children}) {
+        return <span><h1>{title}</h1>{children}</span>;
+    }
+
+    function PointTag({number, children}) {
+        return <p>{number}. {children}</p>;
     }
 
     return (
@@ -30,14 +53,8 @@ export default function ClientRegulations() {
             </Typography>
             <hr />
             <br />
-            <Grid justify="center" container spacing={3}>
-                <div>
-                    // -> zawartość regulaminu wyświetlić tylko jak serwer zadziała żeby wiedzieć jak wygląda<br />
-                    // -> https://github.com/CondeNast/xml-to-react<br /><br/>
-                    // -> do obsłużenia ponowna akceptacja regulaminu, trzeba znać id regulaminu<br />
-                    // -> nie wiem jak to obsłużyć :(<br /><br />
-                    // -> na głównym widoku może nie przechodzić od razu do informacji o kliencie tylko skorzystać z metod ogólnych i wyświetlić mu regulamin strzelnicy, godziny otwarcia, wolne dni itp.?
-                </div>
+            <Grid container spacing={3}>
+                {regulations}
             </Grid>
         </div>
     )

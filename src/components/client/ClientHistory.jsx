@@ -27,7 +27,7 @@ export default function ClientHistory() {
     });
     const [historyColumns] = useState({
         columns: [
-            { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
+            { title: 'ID', field: 'Id', editable: 'never', hidden: true },
             { title: 'Begin Time', field: 'BeginTime', type: 'date', editable: 'never' },
             { title: 'End Time', field: 'EndTime', type: 'date', editable: 'never' },
             { title: 'Creation Time', field: 'CreationTime', type: 'date', editable: 'never' },
@@ -48,7 +48,6 @@ export default function ClientHistory() {
     };
 
     const ChangeHistoryFromDate = date => {
-        console.log(date)
         setHistoryClientFormData((historyClientFormData) => ({
                 ...historyClientFormData,
                 From: date
@@ -57,7 +56,6 @@ export default function ClientHistory() {
     };
 
     const ChangeHistoryToDate = date => {
-        console.log(date)
         setHistoryClientFormData((historyClientFormData) => ({
                 ...historyClientFormData,
                 To: date

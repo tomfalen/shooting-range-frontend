@@ -56,12 +56,12 @@ function getReservations(session) {
 function addReservation(session, formData) {
     const date = new Date(formData.Begin);
     return Axios.put("http://sokres.ddns.net:50101/customer/current/order", {
-            "Begin": date.getFullYear() + ' ' + ("0" + (date.getMonth() + 1)).slice(-2) + ' ' + ("0" + date.getDate()).slice(-2) + ' ' + date.getHours() + ':' + date.getMinutes(),
-            "Duration": formData.Duration,
+            "Begin": date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2) + ' ' + date.getHours() + ':' + ("0" + date.getMinutes()).slice(-2),
+            "Duration": parseInt(formData.Duration.replace(/\,/g,""), 10),
             "Rimfire": formData.Rimfire,
             "Centerfire": formData.Centerfire,
             "Shell": formData.Shell,
-            "Distance": formData.Distance
+            "Distance": parseInt(formData.Distance.replace(/\,/g,""), 10)
         },
         {
             headers: {
@@ -90,4 +90,29 @@ function getAcceptedRegulations(session) {
         })
 }
 
-export default { getAccountInfo, editAccount, getHistory, getReservations, addReservation, deleteReservation, getAcceptedRegulations }
+function getObjectOpenHours() {
+    return Axios.get("http://sokres.ddns.net:50101/object/open-hours")
+}
+
+function getObjectHolidays() {
+    return Axios.get("http://sokres.ddns.net:50101/object/holidays")
+}
+
+function getIsOpenObject(formDate) {
+    const date = new Date(formDate);
+    const queryDate = date.getFullYear() + '' + ("0" + (date.getMonth() + 1)).slice(-2) + '' + ("0" + date.getDate()).slice(-2);
+    return Axios.get("http://sokres.ddns.net:50101/object/is-open/" + queryDate)
+}
+
+export default {
+        getAccountInfo,
+        editAccount,
+        getHistory,
+        getReservations,
+        addReservation,
+        deleteReservation,
+        getAcceptedRegulations,
+        getObjectOpenHours,
+        getObjectHolidays,
+        getIsOpenObject
+    }
