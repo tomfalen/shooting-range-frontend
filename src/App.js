@@ -5,7 +5,7 @@ import { Provider } from './store';
 import { authReducer, initialAuthState } from './reducers/authReducer';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles'
-import { blue, indigo, green } from '@material-ui/core/colors'
+import { green } from '@material-ui/core/colors'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Axios from 'axios';

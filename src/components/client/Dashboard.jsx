@@ -6,6 +6,9 @@ import Divider from '@material-ui/core/Divider';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
+import Container from "@material-ui/core/Container";
+import authContext from "../../store";
+import api from ".//api";
 import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import PermIdentityOutlinedIcon from "@material-ui/icons/PermIdentityOutlined";
@@ -14,17 +17,16 @@ import DateRangeOutlinedIcon from "@material-ui/icons/DateRangeOutlined";
 import AddTwoToneIcon from "@material-ui/icons/AddTwoTone";
 import HistoryTwoToneIcon from "@material-ui/icons/HistoryTwoTone";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
-import Container from "@material-ui/core/Container";
+import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import ClientShow from "./ClientShow";
-import api from ".//api";
-import authContext from "../../store";
+import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
 import ClientEdit from "./ClientEdit";
 import ClientReservations from "./ClientReservations";
 import ClientAddReservation from "./ClientAddReservation";
 import ClientHistory from "./ClientHistory";
 import ClientRegulations from "./ClientRegulations";
-import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import GlobalInformation from "./GlobalInformation";
+import ChangePassword from "./ChangePassword";
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -72,7 +74,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         GetClientInformations();
-    }, []);
+    },[]);
 
     function GetClientInformations() {
         api.getAccountInfo(sessionId)
@@ -104,6 +106,9 @@ export default function Dashboard() {
     const setRegulationsActive = () => {
         setSelectItem('REGULATIONS');
     };
+    const setChangePasswordActive = () => {
+        setSelectItem('CHANGE_PASSWORD');
+    };
 
     return (
         <div className={classes.root}>
@@ -134,12 +139,6 @@ export default function Dashboard() {
                     </ListItemIcon>
                     <ListItemText primary="Account" />
                 </ListItem>
-                <ListItem button onClick={setEditActive}>
-                    <ListItemIcon>
-                        <EditOutlinedIcon style={{ color: "black" }} />
-                    </ListItemIcon>
-                    <ListItemText primary="Edit account" />
-                </ListItem>
                 <ListItem button onClick={setReservationsActive}>
                     <ListItemIcon>
                         <DateRangeOutlinedIcon style={{ color: "black" }} />
@@ -165,24 +164,39 @@ export default function Dashboard() {
                     <ListItemText primary="Regulations" />
                 </ListItem>
                 <Divider />
+                <ListItem button onClick={setEditActive}>
+                    <ListItemIcon>
+                        <EditOutlinedIcon style={{ color: "black" }} />
+                    </ListItemIcon>
+                    <ListItemText primary="Edit account" />
+                </ListItem>
+                <ListItem button onClick={setChangePasswordActive}>
+                    <ListItemIcon>
+                        <VpnKeyOutlinedIcon style={{ color: "black" }} />
+                    </ListItemIcon>
+                    <ListItemText primary="Change password" />
+                </ListItem>
             </Drawer>
             <main className={classes.content}>
                 <Container maxWidth="lg" className={classes.container}>
                     {
-                        selectItem == 'ACCOUNT' ? (
+                        selectItem === 'ACCOUNT' ? (
                             <ClientShow/>
-                        ) : (selectItem == 'EDIT' ? (
+                        ) : (selectItem === 'EDIT' ? (
                             <ClientEdit/>
-                        ) : (selectItem == 'RESERVATIONS' ? (
+                        ) : (selectItem === 'RESERVATIONS' ? (
                             <ClientReservations/>
-                        ) : (selectItem == 'ADD_RESERVATION' ? (
+                        ) : (selectItem === 'ADD_RESERVATION' ? (
                             <ClientAddReservation/>
-                        ) : (selectItem == 'HISTORY' ? (
+                        ) : (selectItem === 'HISTORY' ? (
                             <ClientHistory/>
-                        ) : (selectItem == 'REGULATIONS' ? (
+                        ) : (selectItem === 'REGULATIONS' ? (
                             <ClientRegulations/>
+                        ) : (selectItem === 'CHANGE_PASSWORD' ? (
+                            <ChangePassword/>
                         ) : (
                             <GlobalInformation/>
+                        )
                         )
                         )
                         )

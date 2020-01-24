@@ -1,13 +1,10 @@
 import React, { useState, useContext, useEffect, Fragment } from 'react';
 import Axios from 'axios';
 import authContext from '../../store';
-import DayPicker, { DateUtils } from 'react-day-picker';
+import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MaterialTable from 'material-table';
 
-import Button from '@material-ui/core/Button';
-import SaveIcon from '@material-ui/icons/Save';
-import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { forwardRef } from 'react';
@@ -29,11 +26,6 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import Container from '@material-ui/core/Container';
 
 import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
 
 const useStyles = makeStyles(theme => ({
   root: {

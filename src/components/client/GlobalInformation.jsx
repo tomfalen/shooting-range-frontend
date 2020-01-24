@@ -1,4 +1,4 @@
-import React, {forwardRef, useContext, useEffect, useState} from "react";
+import React, {forwardRef, useEffect, useState} from "react";
 import api from "./api";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -13,8 +13,6 @@ import Paper from "@material-ui/core/Paper";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Button from "@material-ui/core/Button";
-import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import TextField from "@material-ui/core/TextField";
 import withStyles from "@material-ui/core/styles/withStyles";
 
@@ -51,7 +49,7 @@ export default function GlobalInformation() {
         GetObjectOpenHours();
         GetObjectHolidays();
         GetIsOpenObject(openDayFormData.Day);
-    }, []);
+    },[]);
 
     function GetObjectOpenHours() {
         api.getObjectOpenHours()

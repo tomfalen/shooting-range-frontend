@@ -104,6 +104,20 @@ function getIsOpenObject(formDate) {
     return Axios.get("http://sokres.ddns.net:50101/object/is-open/" + queryDate)
 }
 
+function changePassword(session, formData) {
+    return Axios.post("http://sokres.ddns.net:50101/user/change-password", {
+            "OldPassword": formData.OldPassword,
+            "NewPassword": formData.NewPassword,
+        },
+        {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": session
+            }
+        })
+}
+
 export default {
         getAccountInfo,
         editAccount,
@@ -114,5 +128,6 @@ export default {
         getAcceptedRegulations,
         getObjectOpenHours,
         getObjectHolidays,
-        getIsOpenObject
+        getIsOpenObject,
+        changePassword
     }

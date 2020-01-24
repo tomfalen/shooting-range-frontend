@@ -8,6 +8,7 @@ import RegisterForm from './authorization/registerForm';
 import WorkerManager from './workers/WorkerManager';
 import WorkerAccount from './account/workerAccount';
 import ClientDashboard from "./client/Dashboard";
+import ClientManager from "./clientManager/Search";
 
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -29,16 +30,15 @@ const useStyles = makeStyles(theme => ({
 		flexGrow: 1,
 	},
 	appBar: {
-		marginBottom: 50,
+		marginBottom: 0,
 	},
 }));
 
 const Navigation = () => {
-	const [{ isLoggedIn, sessionId, isWorker }, dispatch] = useContext(authContext);
+	const [{ isLoggedIn, sessionId, IsWorker }, dispatch] = useContext(authContext);
 	const logOut = () => {
 		authApi.logout(sessionId)
 			.then((response) => {
-				console.log(response)
 				dispatch({
 					type: 'LOGOUT',
 					payload: {
@@ -72,39 +72,40 @@ const Navigation = () => {
 								Home
 			  				</Button>
 						</Typography>
-						{isLoggedIn ? (
+						{isLoggedIn && IsWorker ? (
 							<p>
-								{true ? (
-									<p>
-									<Button color="inherit" component={Link} to="/ClientDashboard">
-										Client
-									</Button>
-									<Button color="inherit" component={Link} to="/WorkerManager">
-										WorkerManager
-									</Button>
-									<Button color="inherit" component={Link} to="/WorkerAccount">
-										Account
-									</Button>
-									<Button color="inherit" onClick={logOut} component={Link} to="/">
+								<Button color="inherit" component={Link} to="/ClientManager">
+									ClientSearch
+								</Button>
+								<Button color="inherit" component={Link} to="/WorkerManager">
+									WorkerManager
+								</Button>
+								<Button color="inherit" component={Link} to="/WorkerAccount">
+									Account
+								</Button>
+								<Button color="inherit" onClick={logOut} component={Link} to="/">
 									Logout
-									</Button>
-									</p>
-								):(
-								<p>
-
-								</p>)}
-
+								</Button>
+							</p>
+						):(isLoggedIn && !IsWorker ? (
+							<p>
+								<Button color="inherit" component={Link} to="/Client">
+									Client
+								</Button>
+								<Button color="inherit" onClick={logOut} component={Link} to="/">
+									Logout
+								</Button>
 							</p>
 						) : (
-								<p>
-									<Button color="inherit" component={Link} to="/login">
-										Login
-									</Button>
-									<Button color="inherit" component={Link} to="/register">
-										Register
-									</Button>
-								</p>
-							)}
+							<p>
+								<Button color="inherit" component={Link} to="/login">
+									Login
+								</Button>
+								<Button color="inherit" component={Link} to="/register">
+									Register
+								</Button>
+							</p>
+						))}
 					</Toolbar>
 				</AppBar>
 
@@ -114,7 +115,8 @@ const Navigation = () => {
 					<Route exact path="/login" component={LoginForm} />
 					<Route exact path="/register" component={RegisterForm} />
 					<Route exact path="/WorkerManager" component={WorkerManager} />
-					<Route exact path="/ClientDashboard" component={ClientDashboard} />
+					<Route exact path="/Client" component={ClientDashboard} />
+					<Route exact path="/ClientManager" component={ClientManager} />
 				</Switch>
 			</Router>
 		</section>

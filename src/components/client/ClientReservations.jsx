@@ -45,7 +45,7 @@ export default function ClientReservations() {
 
     useEffect(() => {
         GetClientReservations();
-    }, []);
+    },[]);
 
     function GetClientReservations() {
         api.getReservations(sessionId)

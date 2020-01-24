@@ -13,7 +13,7 @@ export default function ClientRegulations() {
 
     useEffect(() => {
         GetClientAccteptedRegulations();
-    }, []);
+    },[]);
 
     function GetClientAccteptedRegulations() {
         api.getAcceptedRegulations(sessionId)

@@ -16,7 +16,7 @@ const LoginForm = () => {
 		username: '',
 		password: ''
 	});
-	const [{ isLoggedIn, error }, dispatch] = useContext(authContext);
+	const [{ isLoggedIn, error, IsWorker }, dispatch] = useContext(authContext);
 	const useStyles = makeStyles(theme => ({
 		paper: {
 			marginTop: theme.spacing(8),
@@ -43,7 +43,6 @@ const LoginForm = () => {
 		// "9993dd24-bc85-4f26-915e-a466b3b95275"
 		authApi.login(formData)
 			.then((response) => {
-				console.log(response)
 				dispatch({
 					type: 'LOGIN',
 					payload: {
@@ -65,7 +64,6 @@ const LoginForm = () => {
 
 	function onChange(event) {
 		const { name, value } = event.target;
-		console.log(isLoggedIn)
 		setFormData((formData) => ({
 			...formData,
 			[name]: value
@@ -74,62 +72,63 @@ const LoginForm = () => {
 
 	return (
 		<Fragment>
-			{isLoggedIn ? (
+			{isLoggedIn && IsWorker ? (
 				<Redirect to="/" />
+			) : (isLoggedIn && !IsWorker ? (
+				<Redirect to="/ClientDashboard" />
 			) : (
-					<Fragment>
-						{error && <p className="error">{error}</p>}
-							<Container component="main" className={'loginForm'} maxWidth="xs">
-								<CssBaseline />
-								<div className={classes.paper}>
-									<Avatar className={classes.avatar}>
-										<LockOutlinedIcon />
-									</Avatar>
-									<Typography component="h1" variant="h5">
-										Sign in
-        							</Typography>
-									<form className={classes.form} onSubmit={onSubmit} noValidate>
-										<TextField
-											variant="outlined"
-											margin="normal"
-											required
-											fullWidth
-											id="email"
-											label="Email Address"
-											value={formData.username}
-											onChange={onChange}
-											name="username"
-											autoComplete="email"
-											autoFocus
-										/>
-										<TextField
-											variant="outlined"
-											margin="normal"
-											required
-											fullWidth
-											name="password"
-											label="Password"
-											value={formData.password}
-											onChange={onChange}
-											type="password"
-											id="password"
-											autoComplete="current-password"
-										/>
-										<Button
-											type="submit"
-											fullWidth
-											variant="contained"
-											color="primary"
-											className={classes.submit}
-										>
-											Sign In
-         							 </Button>
-									</form>
-								</div>
-
-							</Container>
-					</Fragment>
-				)}
+				<Fragment>
+					{error && <p className="error">{error}</p>}
+					<Container component="main" className={'loginForm'} maxWidth="xs">
+						<CssBaseline />
+						<div className={classes.paper}>
+							<Avatar className={classes.avatar}>
+								<LockOutlinedIcon />
+							</Avatar>
+							<Typography component="h1" variant="h5">
+								Sign in
+							</Typography>
+							<form className={classes.form} onSubmit={onSubmit} noValidate>
+								<TextField
+									variant="outlined"
+									margin="normal"
+									required
+									fullWidth
+									id="email"
+									label="Email Address"
+									value={formData.username}
+									onChange={onChange}
+									name="username"
+									autoComplete="email"
+									autoFocus
+								/>
+								<TextField
+									variant="outlined"
+									margin="normal"
+									required
+									fullWidth
+									name="password"
+									label="Password"
+									value={formData.password}
+									onChange={onChange}
+									type="password"
+									id="password"
+									autoComplete="current-password"
+								/>
+								<Button
+									type="submit"
+									fullWidth
+									variant="contained"
+									color="primary"
+									className={classes.submit}
+								>
+									Sign In
+								</Button>
+							</form>
+						</div>
+					</Container>
+				</Fragment>
+			))}
 		</Fragment>
 	);
 };

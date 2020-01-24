@@ -22,7 +22,7 @@ export default function ClientShow() {
 
     useEffect(() => {
         GetClientInformations();
-    }, []);
+    },[]);
 
     function GetClientInformations() {
         api.getAccountInfo(sessionId)
