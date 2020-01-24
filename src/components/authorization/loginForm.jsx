@@ -75,7 +75,7 @@ const LoginForm = () => {
 			{isLoggedIn && IsWorker ? (
 				<Redirect to="/" />
 			) : (isLoggedIn && !IsWorker ? (
-				<Redirect to="/ClientDashboard" />
+				<Redirect to="/Client" />
 			) : (
 				<Fragment>
 					{error && <p className="error">{error}</p>}
