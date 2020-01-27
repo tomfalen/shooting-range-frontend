@@ -43,6 +43,7 @@ const LoginForm = () => {
 		// "9993dd24-bc85-4f26-915e-a466b3b95275"
 		authApi.login(formData)
 			.then((response) => {
+				console.log(response)
 				dispatch({
 					type: 'LOGIN',
 					payload: {

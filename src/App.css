@@ -59,11 +59,15 @@
 .workerList {
   margin: 15px;
   margin-bottom: 50px;
-  max-width: 90vw;
+  max-width: 95vw;
   padding: 15px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 3px 6px 19px 6px #888888;
+}
+
+.accountComp{
+  margin-top: 15px;
 }
 
 @keyframes App-logo-spin {

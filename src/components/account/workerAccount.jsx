@@ -206,7 +206,7 @@ export default function WorkerManager() {
     };
     const classes = useStyles();
     return (
-        <div>
+        <div className="accountComp">
             <Fragment>
                 <CssBaseline />
                 <Grid container>
