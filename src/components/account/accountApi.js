@@ -33,4 +33,32 @@ function getSelfAbsencess(sessionId){
     })
 }
 
-export default { getSelfData, getSelfReservations, getSelfAbsencess }
+function addAbsence(data, sessionId){
+    const dateFrom = new Date(data.TimeFrom);
+    const fromQuery = dateFrom.getFullYear() + '' + ("0" + (dateFrom.getMonth() + 1)).slice(-2) + '' + ("0" + dateFrom.getDate()).slice(-2);
+    const dateTo = new Date(data.TimeTo);
+    const toQuery = dateTo.getFullYear() + '' + ("0" + (dateTo.getMonth() + 1)).slice(-2) + '' + ("0" + dateTo.getDate()).slice(-2);
+
+    return Axios.put("http://sokres.ddns.net:50101/worker/current/absence/" + fromQuery + "/" + toQuery,{},
+    {
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": sessionId
+        }
+    })
+}
+
+function deleteAbsence(absenceId, sessionId){
+
+    return Axios.delete("http://sokres.ddns.net:50101/worker/current/absence/" + absenceId,
+    {
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": sessionId
+        }
+    })
+}
+
+export default { getSelfData, getSelfReservations, getSelfAbsencess, addAbsence, deleteAbsence }

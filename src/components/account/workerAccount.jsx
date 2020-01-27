@@ -65,7 +65,7 @@ export default function WorkerManager() {
 
     const [columnsAbsencess] = useState({
         columns: [
-            { title: 'ID', field: 'Id', editable: 'never' },
+            { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
             { title: 'Time from', field: 'TimeFrom', editable: 'always', type: 'date' },
             { title: 'Time to', field: 'TimeTo', editable: 'always', type: 'date' },
         ],
@@ -143,25 +143,23 @@ export default function WorkerManager() {
             margin: theme.spacing(3, 0, 2),
         },
     }));
-    const editRequest = (data) => {
-        // workerApi.editWorker(data, sessionId)
-        //   .then((response) => {
-        //     console.log(response.status)
-        //   })
-        //   .catch((error) => {
-        //     console.log(error)
-        //   })
-    };
-
-    const deleteRequest = (data) => {
-        // workerApi.deleteWorker(data)
-        //   .then((response) => {
-        //     console.log(response.status)
-        //   })
-        //   .catch((error) => {
-        //     console.log(error)
-        //   })
-    };
+    const addRequest = (data) => {
+        accountApi.addAbsence(data, sessionId)
+          .then((response) => {
+          })
+          .catch((error) => {
+          })
+      }
+    
+      const deleteRequest = (data) => {
+        accountApi.deleteAbsence(data, sessionId)
+          .then((response) => {
+            console.log(response.status)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      };
     useEffect(() => {
         var reservations = false;
         var absencess = false;
@@ -342,38 +340,48 @@ export default function WorkerManager() {
                             }}
                             editable={{
                                 onRowAdd: newData =>
-                                    new Promise((resolve, reject) => {
-                                        setTimeout(() => {
-                                            {
-                                                /* const data = this.state.data;
-                                                data.push(newData);
-                                                this.setState({ data }, () => resolve()); */
-                                            }
-                                            resolve();
-                                        }, 1000);
-                                    }),
-                                onRowUpdate: (newData, oldData) =>
-                                    new Promise(resolve => {
-                                        resolve();
-                                        editRequest(newData);
-                                        if (oldData) {
-                                            setData(prevState => {
-                                                const data = [...prevState.data];
-                                                data[data.indexOf(oldData)] = newData;
-                                                return { ...prevState, data };
-                                            });
-                                        }
-                                    }),
+                                new Promise(resolve => {
+                                  addRequest(newData);
+                                  setDataAbsencess(prevState => {
+                                    const data = [...prevState.data];
+                                    console.log(data);
+                
+                                    data.push(newData);
+                                    return { ...prevState, data };
+                                  });
+                                  resolve();
+                                }),
                                 onRowDelete: oldData =>
-                                    new Promise(resolve => {
-                                        resolve();
-                                        deleteRequest(oldData.Id);
-                                        setData(prevState => {
-                                            const data = [...prevState.data];
-                                            data.splice(data.indexOf(oldData), 1);
-                                            return { ...prevState, data };
-                                        });
-                                    }),
+                                  new Promise(resolve => {
+                                    resolve();
+                                    deleteRequest(oldData.Id);
+                                    setDataAbsencess(prevState => {
+                                      const data = [...prevState.data];
+                                      data.splice(data.indexOf(oldData), 1);
+                                      return { ...prevState, data };
+                                    });
+                                  }),
+                                // onRowAdd: newData =>
+                                //     new Promise((resolve, reject) => {
+                                //         setTimeout(() => {
+                                //             {
+                                //                 /* const data = this.state.data;
+                                //                 data.push(newData);
+                                //                 this.setState({ data }, () => resolve()); */
+                                //             }
+                                //             resolve();
+                                //         }, 1000);
+                                //     }),
+                                // onRowDelete: oldData =>
+                                //     new Promise(resolve => {
+                                //         resolve();
+                                //         deleteRequest(oldData.Id);
+                                //         setData(prevState => {
+                                //             const data = [...prevState.data];
+                                //             data.splice(data.indexOf(oldData), 1);
+                                //             return { ...prevState, data };
+                                //         });
+                                //     }),
                             }}
                         />
                     </Grid>

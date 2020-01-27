@@ -4,6 +4,7 @@ import authContext from '../../store';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MaterialTable from 'material-table';
+import workerApi from './workerApi';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -94,7 +95,7 @@ export default function WorkerDetails(props) {
 
   const [columns] = useState({
     columns: [
-      { title: 'ID', field: 'Id', editable: 'never' },
+      { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
       { title: 'Time from', field: 'TimeFrom', editable: 'always', type: 'date' },
       { title: 'Time to', field: 'TimeTo', editable: 'always', type: 'date' },
     ],
@@ -132,24 +133,22 @@ export default function WorkerDetails(props) {
       })
   }
 
-  const editRequest = (data) => {
-    // workerApi.editWorker(data, sessionId)
-    //   .then((response) => {
-    //     console.log(response.status)
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
-  };
+  const addRequest = (data) => {
+    workerApi.addAbsence(data, sessionId, props.value)
+      .then((response) => {
+      })
+      .catch((error) => {
+      })
+  }
 
   const deleteRequest = (data) => {
-    // workerApi.deleteWorker(data)
-    //   .then((response) => {
-    //     console.log(response.status)
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
+    workerApi.deleteAbsence(data, sessionId, props.value)
+      .then((response) => {
+        console.log(response.status)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   };
   const [state, setState] = useState({
     selectedDays: []
@@ -228,26 +227,26 @@ export default function WorkerDetails(props) {
         <Grid item xs={10}>
           <Fragment>
             <MaterialTable
+              title="Absences"
               columns={columns.columns}
               icons={tableIcons}
               data={data.data}
               options={{
                 search: false,
-                toolbar: false,
               }}
               editable={{
-                onRowUpdate: (newData, oldData) =>
-                  new Promise(resolve => {
-                    resolve();
-                    editRequest(newData);
-                    if (oldData) {
-                      setData(prevState => {
-                        const data = [...prevState.data];
-                        data[data.indexOf(oldData)] = newData;
-                        return { ...prevState, data };
-                      });
-                    }
-                  }),
+                onRowAdd: newData =>
+                new Promise(resolve => {
+                  addRequest(newData);
+                  setData(prevState => {
+                    const data = [...prevState.data];
+                    console.log(data);
+
+                    data.push(newData);
+                    return { ...prevState, data };
+                  });
+                  resolve();
+                }),
                 onRowDelete: oldData =>
                   new Promise(resolve => {
                     resolve();

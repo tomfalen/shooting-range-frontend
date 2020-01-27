@@ -11,6 +11,34 @@ function getWorkers(data) {
         })
 }
 
+function addAbsence(data, sessionId, workerId){
+    const dateFrom = new Date(data.TimeFrom);
+    const fromQuery = dateFrom.getFullYear() + '' + ("0" + (dateFrom.getMonth() + 1)).slice(-2) + '' + ("0" + dateFrom.getDate()).slice(-2);
+    const dateTo = new Date(data.TimeTo);
+    const toQuery = dateTo.getFullYear() + '' + ("0" + (dateTo.getMonth() + 1)).slice(-2) + '' + ("0" + dateTo.getDate()).slice(-2);
+    console.log(fromQuery, toQuery, workerId)
+    return Axios.put("http://sokres.ddns.net:50101/worker/absence/" + workerId + "/" + fromQuery + "/" + toQuery,{},
+    {
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": sessionId
+        }
+    })
+}
+
+function deleteAbsence(absenceId, sessionId, workerId){
+    console.log(absenceId, sessionId, workerId)
+    return Axios.delete("http://sokres.ddns.net:50101/worker/absence/" + workerId + "/" + absenceId,
+    {
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": sessionId
+        }
+    })
+}
+
 function editWorker(data, sessionId) {
     return Axios.post("http://sokres.ddns.net:50101/worker/update/" + data.Id,
         {
@@ -64,4 +92,4 @@ function addWorker(data, sessionId, selectedBirthDate, selectedEmployedDate) {
       })
 }
 
-export default { getWorkers, editWorker, deleteWorker, addWorker };
+export default { getWorkers, editWorker, deleteWorker, addWorker, addAbsence, deleteAbsence };
