@@ -63,14 +63,14 @@ export default function AxisDetails(props) {
   }
 
   return (
-    <div>
+    <div class="workerList">
       <Fragment >
         <form onSubmit={onSubmit} className={classes.workerComp}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Typography component="h1" variant="h5">
               Add new field
               </Typography>
-            <Grid container xs="12" className={classes.gridContainer} spacing="3">
+            <Grid container xs="4" className={classes.gridContainer} spacing="3">
               <Grid item xs="4" >
                 <TextField
                   required
@@ -93,7 +93,7 @@ export default function AxisDetails(props) {
               </Grid>
             </Grid>
 
-            <Grid container xs='12' spacing="4">
+            <Grid container xs='4' spacing="4">
               <Grid item xs='4'>
                 <Button
                   variant="contained"

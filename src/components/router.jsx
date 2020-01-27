@@ -10,6 +10,7 @@ import WorkerAccount from './account/workerAccount';
 import ClientDashboard from "./client/Dashboard";
 import ClientManager from "./clientManager/Search";
 import FacilityManager from "./facility/facilityManager"
+import ReservationsManager from "./reservations/reservationsManager";
 
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -78,6 +79,9 @@ const Navigation = () => {
 								<Button color="inherit" component={Link} to="/ClientManager">
 									ClientSearch
 								</Button>
+								<Button color="inherit" component={Link} to="/ReservationsManager">
+									ReservationsManager
+								</Button>
 								<Button color="inherit" component={Link} to="/FacilityManager">
 									FacilityManager
 								</Button>
@@ -121,7 +125,9 @@ const Navigation = () => {
 					<Route exact path="/WorkerManager" component={WorkerManager} />
 					<Route exact path="/Client" component={ClientDashboard} />
 					<Route exact path="/ClientManager" component={ClientManager} />
-					<Route exact path="/FacilityManager" component={FacilityManager} />
+					<Route exact path="/FacilityManager" component={FacilityManager} />\
+					<Route exact path="/ReservationsManager" component={ReservationsManager} />
+					
 				</Switch>
 			</Router>
 		</section>
