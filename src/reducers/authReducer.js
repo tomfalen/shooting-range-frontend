@@ -9,9 +9,6 @@ export const initialAuthState = {
 export const authReducer = (state, action) => {
     switch (action.type) {
         case 'LOGIN':
-            localStorage.setItem("sessionId", action.payload.sessionId);
-            localStorage.setItem("isWorker", action.payload.IsWorker);
-            localStorage.setItem("permissions", action.payload.permissions);
             return {
                 isLoggedIn: true,
                 error: '',

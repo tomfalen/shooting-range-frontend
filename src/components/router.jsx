@@ -11,6 +11,7 @@ import ClientDashboard from "./client/Dashboard";
 import ClientManager from "./clientManager/Search";
 import FacilityManager from "./facility/facilityManager"
 import ReservationsManager from "./reservations/reservationsManager";
+import HomeComponent from './home';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -118,7 +119,7 @@ const Navigation = () => {
 				</AppBar>
 
 				<Switch>
-					<Route exact path="/" />
+					<Route exact path="/" component={HomeComponent}/>
 					<Route exact path="/WorkerAccount" component={WorkerAccount} />
 					<Route exact path="/login" component={LoginForm} />
 					<Route exact path="/register" component={RegisterForm} />

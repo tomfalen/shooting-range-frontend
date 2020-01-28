@@ -16,7 +16,11 @@ const LoginForm = () => {
 		username: '',
 		password: ''
 	});
+
+
 	const [{ isLoggedIn, error, IsWorker }, dispatch] = useContext(authContext);
+	
+
 	const useStyles = makeStyles(theme => ({
 		paper: {
 			marginTop: theme.spacing(8),

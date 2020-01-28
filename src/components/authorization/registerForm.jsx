@@ -84,7 +84,7 @@ const RegisterForm = () => {
                 <Redirect to="/" />
             ) : (
                     <Fragment>
-                        <Container component="main" maxWidth="xs">
+                        <Container component="main" className={'loginForm'} maxWidth="xs">
                             <CssBaseline />
                             <div className={classes.paper}>
                                 <Avatar className={classes.avatar}>
