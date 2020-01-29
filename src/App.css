@@ -13,6 +13,14 @@
   }
 }
 
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  width: 30vw;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -26,6 +34,48 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.DayPicker {
+  padding: 0px !important;
+  margin: 0px 0px 0px 0px !important;
+  box-shadow: none !important;
+  display: block !important;
+}
+
+.loginForm{
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -250px !important;
+  align-items: center;
+  box-shadow: 3px 6px 19px 6px #888888;
+  height: 60vh !important;
+}
+
+.addWorker {
+  margin: 15px;
+  margin-bottom: 50px;
+  max-width: 35vw;
+  padding: 30px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 3px 6px 19px 6px #888888;
+}
+
+.workerList {
+  margin: 15px;
+  margin-bottom: 50px;
+  max-width: 95vw;
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 3px 6px 19px 6px #888888;
+}
+
+.accountComp{
+  margin-top: 15px;
 }
 
 @keyframes App-logo-spin {
