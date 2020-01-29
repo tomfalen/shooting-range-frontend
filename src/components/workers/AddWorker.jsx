@@ -88,14 +88,14 @@ export default function AddWorker() {
 
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Typography component="h1" variant="h5">
-              Add new worker
+              Dodaj pracownika
               </Typography>
             <Grid container xs="12" className={classes.gridContainer} spacing="3">
               <Grid item xs="4" >
                 <TextField
                   required
                   id="outlined-required"
-                  label="username"
+                  label="Nazwa użytkownika"
                   name="username"
                   value={formData.username}
                   onChange={onChange}
@@ -105,7 +105,7 @@ export default function AddWorker() {
                 <TextField
                   required
                   id="outlined-required"
-                  label="Email"
+                  label="Adres e-mail"
                   name="Email"
                   value={formData.Email}
                   onChange={onChange}
@@ -115,7 +115,7 @@ export default function AddWorker() {
                 <TextField
                   required
                   id="outlined-password-input"
-                  label="Password"
+                  label="Hasło"
                   name="password"
                   type="password"
                   autoComplete="current-password"
@@ -127,7 +127,7 @@ export default function AddWorker() {
                 <TextField
                   required
                   id="outlined-required"
-                  label="First Name"
+                  label="Imię"
                   name="FirstName"
                   value={formData.FirstName}
                   onChange={onChange}
@@ -147,7 +147,7 @@ export default function AddWorker() {
                 <TextField
                   required
                   id="outlined-required"
-                  label="Last name"
+                  label="Nazwisko"
                   name="LastName"
                   value={formData.LastName}
                   onChange={onChange}
@@ -157,7 +157,7 @@ export default function AddWorker() {
                 <TextField
                   required
                   id="outlined-required"
-                  label="Phone"
+                  label="Telefon"
                   name="Phone"
                   value={formData.Phone}
                   onChange={onChange}
@@ -168,7 +168,7 @@ export default function AddWorker() {
                   margin="normal"
                   id="date-picker-dialog"
                   name="BirthDay"
-                  label="Birthday"
+                  label="Urodziny"
                   format="dd/MM/yyyy"
                   value={selectedBirthDate}
                   onChange={onBirthDateChange}
@@ -182,7 +182,7 @@ export default function AddWorker() {
                   margin="normal"
                   id="date-picker-dialog"
                   name="Employed"
-                  label="Date picker dialog"
+                  label="Zatrudniony"
                   format="dd/MM/yyyy"
                   value={selectedEmployedDate}
                   onChange={onEmployedDateChange}
@@ -204,7 +204,7 @@ export default function AddWorker() {
                   type="submit"
                   fullWidth
                 >
-                  Save
+                  Dodaj
                    </Button>
               </Grid>
             </Grid>

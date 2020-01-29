@@ -49,7 +49,7 @@ export default function ClientRegulations() {
     return (
         <div>
             <Typography variant="h4" align="center">
-                Accepted regulations
+                Zaakceptowany regulamin
             </Typography>
             <hr />
             <br />

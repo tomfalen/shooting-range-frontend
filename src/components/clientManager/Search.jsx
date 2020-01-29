@@ -29,15 +29,15 @@ export default function ClientManager() {
     });
     const [clientColumns] = useState({
         columns: [
-            { title: 'FirstName', field: 'FirstName', editable: 'never' },
-            { title: 'LastName', field: 'LastName', editable: 'never' },
-            { title: 'GunPermissionNumber', field: 'GunPermissionNumber', editable: 'never' },
-            { title: 'GunPermissionPublisher', field: 'GunPermissionPublisher', editable: 'never' },
-            { title: 'PerceptorIdentityNumber', field: 'PerceptorIdentityNumber', editable: 'never' },
-            { title: 'PerceptorIdentityPublisher', field: 'PerceptorIdentityPublisher', editable: 'never' },
-            { title: 'Username', field: 'Username', editable: 'never' },
-            { title: 'Email', field: 'Email', editable: 'never' },
-            { title: 'AcceptedRegulationsId', field: 'AcceptedRegulationsId', editable: 'never' },
+            { title: 'Imię', field: 'FirstName', editable: 'never' },
+            { title: 'Nazwisko', field: 'LastName', editable: 'never' },
+            { title: 'Numer pozw. na broń', field: 'GunPermissionNumber', editable: 'never' },
+            { title: 'Organ wyd. nr pozw. na broń', field: 'GunPermissionPublisher', editable: 'never' },
+            { title: 'Numer leg. prow. strzelanie', field: 'PerceptorIdentityNumber', editable: 'never' },
+            { title: 'Organ wyd. leg. prow. strzelanie', field: 'PerceptorIdentityPublisher', editable: 'never' },
+            { title: 'Nazwa użytkownika', field: 'Username', editable: 'never' },
+            { title: 'E-mail', field: 'Email', editable: 'never' },
+            { title: 'Regulamin', field: 'AcceptedRegulationsId', editable: 'never' },
         ],
     });
     const tableIcons = {
@@ -86,7 +86,7 @@ export default function ClientManager() {
                         <Grid item lg={3} md={6} sm={6} xs={12}>
                             <TextField
                                 fullWidth
-                                label="Last Name"
+                                label="Nazwisko"
                                 name="LastName"
                                 value={searchClientFormData.LastName}
                                 onChange={ChangeSearchClientData}
@@ -95,7 +95,7 @@ export default function ClientManager() {
                         <Grid item lg={3} md={6} sm={6} xs={12}>
                             <TextField
                                 fullWidth
-                                label="Email"
+                                label="Adres e-mail"
                                 name="Email"
                                 value={searchClientFormData.Email}
                                 onChange={ChangeSearchClientData}
@@ -104,7 +104,7 @@ export default function ClientManager() {
                         <Grid item lg={3} md={6} sm={6} xs={12}>
                             <TextField
                                 fullWidth
-                                label="Gun Permission Number"
+                                label="Numer pozw. na broń"
                                 name="GunPermissionNumber"
                                 value={searchClientFormData.GunPermissionNumber}
                                 onChange={ChangeSearchClientData}
@@ -113,7 +113,7 @@ export default function ClientManager() {
                         <Grid item lg={3} md={6} sm={6} xs={12}>
                             <TextField
                                 fullWidth
-                                label="Perceptor Identity Number"
+                                label="Numer leg. prow. strzelanie"
                                 name="PerceptorIdentityNumber"
                                 value={searchClientFormData.PerceptorIdentityNumber}
                                 onChange={ChangeSearchClientData}
@@ -129,12 +129,12 @@ export default function ClientManager() {
                                 type="submit"
                                 fullWidth
                             >
-                                Search clients
+                                Wyszukaj
                             </Button>
                         </Grid>
                         <Grid item xs={12}>
                             <MaterialTable
-                                title='Clients'
+                                title='Klienci'
                                 columns={clientColumns.columns}
                                 icons={tableIcons}
                                 data={clients.data}

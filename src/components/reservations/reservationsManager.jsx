@@ -47,13 +47,13 @@ export default function ReservationsManager() {
 
     const [columns] = useState({
         columns: [
-            { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
-            { title: 'BeginTime', field: 'BeginTime', type: 'date' },
-            { title: 'EndTime', field: 'EndTime', type: 'date' },
-            { title: 'CreationTime', field: 'CreationTime', type: 'date' },
-            { title: 'ModificationTime', field: 'ModificationTime', type: 'date' },
-            { title: 'Position', field: 'Position' },
-            { title: 'Perceptor', field: 'Perceptor' },
+            { title: 'Id', field: 'Id', editable: 'never', hidden: 'true' },
+            { title: 'Czas ropoczęcia', field: 'BeginTime', type: 'date' },
+            { title: 'Czas zakończenia', field: 'EndTime', type: 'date' },
+            { title: 'Czas utworzenia', field: 'CreationTime', type: 'date' },
+            { title: 'Czas modyfikacji', field: 'ModificationTime', type: 'date' },
+            { title: 'Tor', field: 'Position' },
+            { title: 'Opiekun', field: 'Perceptor' },
             { title: 'Status', field: 'Status' },
         ],
     });
@@ -164,7 +164,7 @@ export default function ReservationsManager() {
                         margin="normal"
                         fullWidth
                         name="orderId"
-                        label="Order id"
+                        label="Id rezerwacji"
                         type="number"
                         id="order"
                         value={formData.orderId}
@@ -178,7 +178,7 @@ export default function ReservationsManager() {
                         className={classes.submit}
                         onClick={getOrders}
                     >
-                        Sign In
+                        Wyszukaj
 								</Button>
                 </Grid>
                 <Grid item xs="3" >
@@ -187,7 +187,7 @@ export default function ReservationsManager() {
                         margin="normal"
                         fullWidth
                         name="workerId"
-                        label="Worker id"
+                        label="Id pracownika"
                         type="number"
                         id="order"
                         value={formData.workerId}
@@ -201,7 +201,7 @@ export default function ReservationsManager() {
                         className={classes.submit}
                         onClick={getOrdersByWorker}
                     >
-                        Sign In
+                        Wyszukaj
 								</Button>
                 </Grid>
                 <Grid item xs="3" >
@@ -210,7 +210,7 @@ export default function ReservationsManager() {
                         margin="normal"
                         fullWidth
                         name="clientId"
-                        label="Order id"
+                        label="Id klienta"
                         type="number"
                         id="order"
                         value={formData.clientId}
@@ -224,7 +224,7 @@ export default function ReservationsManager() {
                         color="primary"
                         className={classes.submit}
                     >
-                        Sign In
+                        Wyszukaj
 								</Button>
                 </Grid>
                 <Grid item xs="3" >
@@ -233,7 +233,7 @@ export default function ReservationsManager() {
                         margin="normal"
                         fullWidth
                         name="axisId"
-                        label="Axis id"
+                        label="Id osi"
                         type="number"
                         id="order"
                         value={formData.axisId}
@@ -247,13 +247,13 @@ export default function ReservationsManager() {
                         className={classes.submit}
                         onClick={getOrdersByAxis}
                     >
-                        Sign In
+                        Wyszukaj
 								</Button>
                 </Grid>
             </Grid>
             <div class="">
                 <MaterialTable
-                    title="Axis list"
+                    title="Rezerwacje"
                     columns={columns.columns}
                     icons={tableIcons}
                     data={data.data}

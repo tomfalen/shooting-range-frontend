@@ -68,14 +68,14 @@ export default function AxisDetails(props) {
         <form onSubmit={onSubmit} className={classes.workerComp}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Typography component="h1" variant="h5">
-              Add new field
+              Dodaj nowy tor
               </Typography>
             <Grid container xs="4" className={classes.gridContainer} spacing="3">
               <Grid item xs="4" >
                 <TextField
                   required
                   id="outlined-required"
-                  label="name"
+                  label="Nazwa"
                   name="name"
                   value={formData.username}
                   onChange={onChange}
@@ -85,7 +85,7 @@ export default function AxisDetails(props) {
                 <TextField
                   required
                   id="outlined-required"
-                  label="number"
+                  label="Numer"
                   name="number"
                   value={formData.Email}
                   onChange={onChange}
@@ -104,7 +104,7 @@ export default function AxisDetails(props) {
                   type="submit"
                   fullWidth
                 >
-                  Save
+                  Zapisz
                    </Button>
               </Grid>
             </Grid>

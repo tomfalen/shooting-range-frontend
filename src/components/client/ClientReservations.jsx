@@ -21,12 +21,12 @@ export default function ClientReservations() {
     const [reservationColumns] = useState({
         columns: [
             { title: 'Id', field: 'Id', editable: 'never' },
-            { title: 'Begin Time', field: 'BeginTime', type: 'date', editable: 'never' },
-            { title: 'End Time', field: 'EndTime', type: 'date', editable: 'never' },
-            { title: 'Creation Time', field: 'CreationTime', type: 'date', editable: 'never' },
-            { title: 'Modification Time', field: 'ModificationTime', type: 'date', editable: 'never' },
-            { title: 'Position', field: 'Position', editable: 'never' },
-            { title: 'Perceptor', field: 'Perceptor', editable: 'never' },
+            { title: 'Czas rozpoczęcia', field: 'BeginTime', type: 'date', editable: 'never' },
+            { title: 'Czas zakończenia', field: 'EndTime', type: 'date', editable: 'never' },
+            { title: 'Czas utworzenia', field: 'CreationTime', type: 'date', editable: 'never' },
+            { title: 'Czas modyfikacji', field: 'ModificationTime', type: 'date', editable: 'never' },
+            { title: 'Tor', field: 'Position', editable: 'never' },
+            { title: 'Opiekun', field: 'Perceptor', editable: 'never' },
             { title: 'Status', field: 'Status', editable: 'never' },
         ],
     });
@@ -68,12 +68,12 @@ export default function ClientReservations() {
     return (
         <div>
             <Typography variant="h4" align="center">
-                Your reservations
+                Twoje rezerwacje
             </Typography>
             <hr />
             <br />
             <MaterialTable
-                title='Reservations'
+                title='Rezerwacje'
                 columns={reservationColumns.columns}
                 icons={tableIcons}
                 data={reservationData.data}

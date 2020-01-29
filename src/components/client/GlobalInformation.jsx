@@ -32,9 +32,9 @@ export default function GlobalInformation() {
     const [holidaysColumns] = useState({
         columns: [
             { title: 'Id', field: 'Id', editable: 'never', hidden: true },
-            { title: 'From', field: 'From', type: 'date', editable: 'never' },
-            { title: 'To', field: 'To', type: 'date', editable: 'never' },
-            { title: 'Reason', field: 'Reason', editable: 'never' },
+            { title: 'Od', field: 'From', type: 'date', editable: 'never' },
+            { title: 'Do', field: 'To', type: 'date', editable: 'never' },
+            { title: 'Powód', field: 'Reason', editable: 'never' },
         ],
     });
     const tableIcons = {
@@ -161,7 +161,7 @@ export default function GlobalInformation() {
                 <Grid item md={4} sm={12} xs={12}>
                     <Paper elevation={3} className={classes.root}>
                         <Typography align="center" variant="h6">
-                            Open hours
+                            Godziny otwarcia
                         </Typography>
                         <div align="center">
                             {openHoursList}
@@ -170,7 +170,7 @@ export default function GlobalInformation() {
                 </Grid>
                 <Grid item md={8} sm={12} xs={12}>
                     <MaterialTable
-                        title='Holidays'
+                        title='Dni wolne'
                         columns={holidaysColumns.columns}
                         icons={tableIcons}
                         data={holidays.data}
@@ -183,13 +183,13 @@ export default function GlobalInformation() {
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <Grid item xs={12}>
                                         <Typography variant="h6">
-                                            Check is object open
+                                            Sprawdź czy obiekt jest otwarty
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12}>
                                         <KeyboardDatePicker
                                             fullWidth
-                                            label="Day"
+                                            label="Dzień"
                                             name="Day"
                                             value={openDayFormData.Day}
                                             onChange={ChangeOpenDayFromDate}
@@ -203,16 +203,16 @@ export default function GlobalInformation() {
                                         <ValidationTextField
                                             className={classes.margin}
                                             fullWidth
-                                            label="Open"
+                                            label="Otwarte"
                                             variant="outlined"
-                                            value="On these day object is open"
+                                            value="W tym dniu obiekt jest otwarty"
                                         />
                                     ) : (
                                         <TextField
                                             fullWidth
                                             error
-                                            label="Close"
-                                            value="On these day object is closed"
+                                            label="Zamknięte"
+                                            value="W tym dniu obiekt jest zamknięty"
                                             variant="outlined"
                                         />
                                     )}

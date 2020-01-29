@@ -44,23 +44,23 @@ export default function FacilityManager() {
 
   const [columns] = useState({
     columns: [
-      { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
-      { title: 'Name', field: 'Name', editable: 'onAdd' },
-      { title: 'Length', field: 'Length', editable: 'onAdd' },
-      { title: 'AllowRimfire', field: 'AllowRimfire', type: 'boolean', editable: 'onAdd' },
-      { title: 'AllowCenterfire', field: 'AllowCenterfire', type: 'boolean', editable: 'onAdd' },
-      { title: 'AllowShell', field: 'allowShell', type: 'boolean', editable: 'onAdd' },
-      { title: 'isOpen', field: 'IsOpen', type: 'boolean', editable: 'onAdd' },
-      { title: 'numberOfFields', field: 'NumberOfFields', type: 'number', editable: 'onAdd' },
-      { title: 'Number', field: 'Number', editable: 'never' },
+      { title: 'Id', field: 'Id', editable: 'never', hidden: 'true' },
+      { title: 'Nazwa', field: 'Name', editable: 'onAdd' },
+      { title: 'Długość', field: 'Length', editable: 'onAdd' },
+      { title: 'Boczny zapłon', field: 'AllowRimfire', type: 'boolean', editable: 'onAdd' },
+      { title: 'Centralny zapłon', field: 'AllowCenterfire', type: 'boolean', editable: 'onAdd' },
+      { title: 'Śrut', field: 'allowShell', type: 'boolean', editable: 'onAdd' },
+      { title: 'Dostępna', field: 'IsOpen', type: 'boolean', editable: 'onAdd' },
+      { title: 'Liczba torów', field: 'NumberOfFields', type: 'number', editable: 'onAdd' },
+      { title: 'Numer', field: 'Number', editable: 'never' },
     ],
   });
   const [holidaysColumns] = useState({
     columns: [
         { title: 'Id', field: 'Id', editable: 'never', hidden: true },
-        { title: 'From', field: 'From', type: 'date', editable: 'onAdd' },
-        { title: 'To', field: 'To', type: 'date', editable: 'onAdd' },
-        { title: 'Reason', field: 'Reason', editable: 'onAdd' },
+        { title: 'Od', field: 'From', type: 'date', editable: 'onAdd' },
+        { title: 'Do', field: 'To', type: 'date', editable: 'onAdd' },
+        { title: 'Powód', field: 'Reason', editable: 'onAdd' },
     ],
 });
   const [{ sessionId }] = useContext(authContext);
@@ -133,7 +133,7 @@ const deleteHolidaysRequest = (data) => {
     <div>
       <div class="workerList">
       <MaterialTable
-        title="Axis list"
+        title="Lista osi"
         columns={columns.columns}
         icons={tableIcons}
         data={data.data}
@@ -177,7 +177,7 @@ const deleteHolidaysRequest = (data) => {
       </div>
       <div class="workerList">
       <MaterialTable
-        title="Holidays list"
+        title="Dni wolne"
         columns={holidaysColumns.columns}
         icons={tableIcons}
         data={holidays.data}

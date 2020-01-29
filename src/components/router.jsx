@@ -72,46 +72,46 @@ const Navigation = () => {
 						</IconButton>
 						<Typography variant="h6" className={classes.title}>
 							<Button color="inherit" component={Link} to="/">
-								Home
+								Strzelec
 			  				</Button>
 						</Typography>
 						{isLoggedIn && IsWorker ? (
 							<p>
 								<Button color="inherit" component={Link} to="/ClientManager">
-									ClientSearch
+									Wyszukiwanie klientów
 								</Button>
 								<Button color="inherit" component={Link} to="/ReservationsManager">
-									ReservationsManager
+									Zarządzanie rezerwacjami
 								</Button>
 								<Button color="inherit" component={Link} to="/FacilityManager">
-									FacilityManager
+									Zarządzanie obiektem
 								</Button>
 								<Button color="inherit" component={Link} to="/WorkerManager">
-									WorkerManager
+									Zarządzanie pracownikami
 								</Button>
 								<Button color="inherit" component={Link} to="/WorkerAccount">
-									Account
+									Konto
 								</Button>
 								<Button color="inherit" onClick={logOut} component={Link} to="/">
-									Logout
+									Wyloguj
 								</Button>
 							</p>
 						):(isLoggedIn && !IsWorker ? (
 							<p>
 								<Button color="inherit" component={Link} to="/Client">
-									Client
+									Klient
 								</Button>
 								<Button color="inherit" onClick={logOut} component={Link} to="/">
-									Logout
+									Wyloguj
 								</Button>
 							</p>
 						) : (
 							<p>
 								<Button color="inherit" component={Link} to="/login">
-									Login
+									Logowanie
 								</Button>
 								<Button color="inherit" component={Link} to="/register">
-									Register
+									Rejestracja
 								</Button>
 							</p>
 						))}

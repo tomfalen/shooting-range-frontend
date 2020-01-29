@@ -95,9 +95,9 @@ export default function WorkerDetails(props) {
 
   const [columns] = useState({
     columns: [
-      { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
-      { title: 'Time from', field: 'TimeFrom', editable: 'always', type: 'date' },
-      { title: 'Time to', field: 'TimeTo', editable: 'always', type: 'date' },
+      { title: 'Id', field: 'Id', editable: 'never', hidden: 'true' },
+      { title: 'Od', field: 'TimeFrom', editable: 'always', type: 'date' },
+      { title: 'Do', field: 'TimeTo', editable: 'always', type: 'date' },
     ],
   });
 
@@ -227,7 +227,7 @@ export default function WorkerDetails(props) {
         <Grid item xs={10}>
           <Fragment>
             <MaterialTable
-              title="Absences"
+              title="Nieobecności"
               columns={columns.columns}
               icons={tableIcons}
               data={data.data}

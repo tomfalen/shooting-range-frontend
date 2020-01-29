@@ -137,44 +137,44 @@ export default function Dashboard() {
                     <ListItemIcon>
                         <PermIdentityOutlinedIcon style={{ color: "black" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Account" />
+                    <ListItemText primary="Konto" />
                 </ListItem>
                 <ListItem button onClick={setReservationsActive}>
                     <ListItemIcon>
                         <DateRangeOutlinedIcon style={{ color: "black" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Reservations" />
+                    <ListItemText primary="Rezerwacje" />
                 </ListItem>
                 <ListItem button onClick={setAddReservationActive}>
                     <ListItemIcon>
                         <AddTwoToneIcon style={{ color: "black" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Add reservation" />
+                    <ListItemText primary="Dodaj rezerwację" />
                 </ListItem>
                 <ListItem button onClick={setHistoryActive}>
                     <ListItemIcon>
                         <HistoryTwoToneIcon style={{ color: "black" }} />
                     </ListItemIcon>
-                    <ListItemText primary="History" />
+                    <ListItemText primary="Historia" />
                 </ListItem>
                 <ListItem button onClick={setRegulationsActive}>
                     <ListItemIcon>
                         <InfoOutlinedIcon style={{ color: "black" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Regulations" />
+                    <ListItemText primary="Regulamin" />
                 </ListItem>
                 <Divider />
                 <ListItem button onClick={setEditActive}>
                     <ListItemIcon>
                         <EditOutlinedIcon style={{ color: "black" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Edit account" />
+                    <ListItemText primary="Edycja konta" />
                 </ListItem>
                 <ListItem button onClick={setChangePasswordActive}>
                     <ListItemIcon>
                         <VpnKeyOutlinedIcon style={{ color: "black" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Change password" />
+                    <ListItemText primary="Zmiana hasła" />
                 </ListItem>
             </Drawer>
             <main className={classes.content}>

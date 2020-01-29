@@ -84,14 +84,14 @@ const RegisterForm = () => {
                 <Redirect to="/" />
             ) : (
                     <Fragment>
-                        <Container component="main" className={'loginForm'} maxWidth="xs">
+                        <Container component="main" className={'registerForm'} maxWidth="xs">
                             <CssBaseline />
                             <div className={classes.paper}>
                                 <Avatar className={classes.avatar}>
                                     <LockOutlinedIcon />
                                 </Avatar>
                                 <Typography component="h1" variant="h5">
-                                    Sign up
+                                    Zarejestruj
                                 </Typography>
                                 <form className={classes.form} onSubmit={onSubmit} noValidate>
                                     <Grid container spacing={2}>
@@ -105,7 +105,7 @@ const RegisterForm = () => {
                                                 required
                                                 fullWidth
                                                 id="firstName"
-                                                label="First Name"
+                                                label="Imię"
                                                 autoFocus
                                             />
                                         </Grid>
@@ -115,7 +115,7 @@ const RegisterForm = () => {
                                                 required
                                                 fullWidth
                                                 id="lastName"
-                                                label="Last Name"
+                                                label="Nazwisko"
                                                 name="LastName"
                                                 value={formData.LastName}
                                                 onChange={onChange}
@@ -131,7 +131,7 @@ const RegisterForm = () => {
                                                 name="username"
                                                 value={formData.username}
                                                 onChange={onChange}
-                                                label="Username"
+                                                label="Nazwa użytkownika"
                                                 autoComplete="email"
                                             />
                                         </Grid>
@@ -141,7 +141,7 @@ const RegisterForm = () => {
                                                 required
                                                 fullWidth
                                                 name="password"
-                                                label="Password"
+                                                label="Hasło"
                                                 value={formData.password}
                                                 onChange={onChange}
                                                 type="password"
@@ -160,7 +160,7 @@ const RegisterForm = () => {
                                                 required
                                                 fullWidth
                                                 id="GunPermissionNumber"
-                                                label="Permission number"
+                                                label="Numer pozw. na broń"
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6}>
@@ -172,7 +172,7 @@ const RegisterForm = () => {
                                                 name="GunPermissionPublisher"
                                                 value={formData.GunPermissionPublisher}
                                                 onChange={onChange}
-                                                label="Permission publisher"
+                                                label="Organ wyd. nr pozw. na broń"
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
@@ -181,7 +181,7 @@ const RegisterForm = () => {
                                                 name="PerceptorIdentityNumber"
                                                 value={formData.PerceptorIdentityNumber}
                                                 onChange={onChange}
-                                                label="Perceptor identity number"
+                                                label="Numer leg. prow. strzelanie"
                                                 variant="outlined"
                                                 required
                                                 fullWidth
@@ -197,7 +197,7 @@ const RegisterForm = () => {
                                                 name="PerceptorIdentityPublisher"
                                                 value={formData.PerceptorIdentityPublisher}
                                                 onChange={onChange}
-                                                label="Perceptor identity publisher"
+                                                label="Organ wyd. leg. prow. strzelanie"
                                                 autoComplete="lname"
                                             />
                                         </Grid>
@@ -209,7 +209,7 @@ const RegisterForm = () => {
                                                 name="Email"
                                                 value={formData.Email}
                                                 onChange={onChange}
-                                                label="Email"
+                                                label="Adres e-mail"
                                                 id="Email"
                                                 autoComplete="current-password"
                                             />
@@ -222,7 +222,7 @@ const RegisterForm = () => {
                                         color="primary"
                                         className={classes.submit}
                                     >
-                                        Sign Up
+                                        Zarejestruj
                                 </Button>
                                 </form>
                             </div>

@@ -68,7 +68,7 @@ export default function ChangePassword() {
     return (
         <div>
             <Typography variant="h4" align="center">
-                Change password
+                Zmiana hasła
             </Typography>
             <hr/>
             <br/>
@@ -76,7 +76,7 @@ export default function ChangePassword() {
                 <Grid justify="center" container spacing={3}>
                     <Grid item xs={12}>
                         <FormControl className={clsx(classes.margin)}>
-                            <InputLabel htmlFor="old-password">Old password</InputLabel>
+                            <InputLabel htmlFor="old-password">Aktualne hasło</InputLabel>
                             <Input
                                 fullWidth
                                 id="old-password"
@@ -96,7 +96,7 @@ export default function ChangePassword() {
                             />
                         </FormControl>
                         <FormControl className={clsx(classes.margin)}>
-                            <InputLabel htmlFor="new-password">New password</InputLabel>
+                            <InputLabel htmlFor="new-password">Nowe hasło</InputLabel>
                             <Input
                                 fullWidth
                                 id="new-password"
@@ -126,7 +126,7 @@ export default function ChangePassword() {
                         startIcon={<SaveOutlined/>}
                         type="submit"
                     >
-                        Change password
+                        Zmień hasło
                     </Button>
                 </Grid>
             </form>

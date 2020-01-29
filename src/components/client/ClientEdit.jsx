@@ -62,7 +62,7 @@ export default function ClientEdit() {
     return (
         <div>
             <Typography variant="h4" align="center">
-                Edit account data
+                Edytuj informacje o koncie
             </Typography>
             <hr />
             <br />
@@ -72,7 +72,7 @@ export default function ClientEdit() {
                         <TextField
                             fullWidth
                             id="standard-basic"
-                            label="First Name"
+                            label="Imię"
                             name="FirstName"
                             value={editClientFormData.FirstName}
                             onChange={ChangeClientData}
@@ -81,7 +81,7 @@ export default function ClientEdit() {
                     <Grid item md={6} sm={6} xs={12}>
                         <TextField
                             fullWidth
-                            label="Last Name"
+                            label="Nazwisko"
                             name="LastName"
                             value={editClientFormData.LastName}
                             onChange={ChangeClientData}
@@ -90,7 +90,7 @@ export default function ClientEdit() {
                     <Grid item md={6} sm={6} xs={12}>
                         <TextField
                             fullWidth
-                            label="Email"
+                            label="Adres e-mail"
                             name="Email"
                             value={editClientFormData.Email}
                             onChange={ChangeClientData}
@@ -102,7 +102,7 @@ export default function ClientEdit() {
                     <Grid item md={3} sm={6} xs={12}>
                         <TextField
                             fullWidth
-                            label="Gun Permission Number"
+                            label="Numer pozw. na broń"
                             name="GunPermissionNumber"
                             value={editClientFormData.GunPermissionNumber}
                             onChange={ChangeClientData}
@@ -111,7 +111,7 @@ export default function ClientEdit() {
                     <Grid item md={3} sm={6} xs={12}>
                         <TextField
                             fullWidth
-                            label="Gun Permission Publisher"
+                            label="Organ wyd. nr pozw. na broń"
                             name="GunPermissionPublisher"
                             value={editClientFormData.GunPermissionPublisher}
                             onChange={ChangeClientData}
@@ -120,7 +120,7 @@ export default function ClientEdit() {
                     <Grid item md={3} sm={6} xs={12}>
                         <TextField
                             fullWidth
-                            label="Perceptor Identity Number"
+                            label="Numer leg. prow. strzelanie"
                             name="PerceptorIdentityNumber"
                             value={editClientFormData.PerceptorIdentityNumber}
                             onChange={ChangeClientData}
@@ -129,7 +129,7 @@ export default function ClientEdit() {
                     <Grid item md={3} sm={6} xs={12}>
                         <TextField
                             fullWidth
-                            label="Perceptor Identity Publisher"
+                            label="Organ wyd. leg. prow. strzelanie"
                             name="PerceptorIdentityPublisher"
                             value={editClientFormData.PerceptorIdentityPublisher}
                             onChange={ChangeClientData}
@@ -146,7 +146,7 @@ export default function ClientEdit() {
                         type="submit"
                         fullWidth
                     >
-                        Save changes
+                        Zmień dane
                     </Button>
                 </div>
             </form>

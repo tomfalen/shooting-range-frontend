@@ -36,7 +36,7 @@ export default function ClientShow() {
     return (
         <div>
             <Typography variant="h4" align="center">
-                Informations about account
+                Informacje o koncie użytkownika
             </Typography>
             <hr />
             <br />
@@ -44,7 +44,7 @@ export default function ClientShow() {
                 <Grid item md={6} sm={6} xs={12}>
                     <TextField
                         fullWidth
-                        label="First Name"
+                        label="Imię"
                         name="FirstName"
                         value={clientData.data.FirstName}
                         InputProps={{
@@ -55,7 +55,7 @@ export default function ClientShow() {
                 <Grid item md={6} sm={6} xs={12}>
                     <TextField
                         fullWidth
-                        label="Last Name"
+                        label="Nazwisko"
                         name="LastName"
                         value={clientData.data.LastName}
                         InputProps={{
@@ -66,7 +66,7 @@ export default function ClientShow() {
                 <Grid item md={6} sm={6} xs={12}>
                     <TextField
                         fullWidth
-                        label="Email"
+                        label="Adres e-mail"
                         name="Email"
                         value={clientData.data.Email}
                         InputProps={{
@@ -77,7 +77,7 @@ export default function ClientShow() {
                 <Grid item md={6} sm={6} xs={12}>
                     <TextField
                         fullWidth
-                        label="Accepted Regulations Id"
+                        label="Zaakceptowany regulamin"
                         name="AcceptedRegulationsId"
                         value={clientData.data.AcceptedRegulationsId}
                         InputProps={{
@@ -88,7 +88,7 @@ export default function ClientShow() {
                 <Grid item md={3} sm={6} xs={12}>
                     <TextField
                         fullWidth
-                        label="Gun Permission Number"
+                        label="Numer pozw. na broń"
                         name="GunPermissionNumber"
                         value={clientData.data.GunPermissionNumber}
                         InputProps={{
@@ -99,7 +99,7 @@ export default function ClientShow() {
                 <Grid item md={3} sm={6} xs={12}>
                     <TextField
                         fullWidth
-                        label="Gun Permission Publisher"
+                        label="Organ wyd. nr pozw. na broń"
                         name="GunPermissionPublisher"
                         value={clientData.data.GunPermissionPublisher}
                         InputProps={{
@@ -110,7 +110,7 @@ export default function ClientShow() {
                 <Grid item md={3} sm={6} xs={12}>
                     <TextField
                         fullWidth
-                        label="Perceptor Identity Number"
+                        label="Numer leg. prow. strzelanie"
                         name="PerceptorIdentityNumber"
                         value={clientData.data.PerceptorIdentityNumber}
                         InputProps={{
@@ -121,7 +121,7 @@ export default function ClientShow() {
                 <Grid item md={3} sm={6} xs={12}>
                     <TextField
                         fullWidth
-                        label="Perceptor Identity Publisher"
+                        label="Organ wyd. leg. prow. strzelanie"
                         name="PerceptorIdentityPublisher"
                         value={clientData.data.PerceptorIdentityPublisher}
                         InputProps={{

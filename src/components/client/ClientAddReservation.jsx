@@ -57,7 +57,7 @@ export default function ClientAddReservation() {
     return (
         <div>
             <Typography variant="h4" align="center">
-                Add reservation
+                Dodaj nową rezerwację
             </Typography>
             <hr />
             <br />
@@ -67,7 +67,7 @@ export default function ClientAddReservation() {
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <DateTimePicker
                                 fullWidth
-                                name="Begin"
+                                name="Początek"
                                 label="Begin"
                                 value={addReservationFormData.Begin}
                                 onChange={ChangeAddReservationBeginDate}
@@ -83,7 +83,7 @@ export default function ClientAddReservation() {
                             fullWidth
                             required
                             type="number"
-                            label="Duration"
+                            label="Czas trwania"
                             name="Duration"
                             value={addReservationFormData.Duration}
                             onChange={ChangeClientReservationData}
@@ -94,7 +94,7 @@ export default function ClientAddReservation() {
                             fullWidth
                             required
                             type="number"
-                            label="Distance"
+                            label="Dystans"
                             name="Distance"
                             value={addReservationFormData.Distance}
                             onChange={ChangeClientReservationData}
@@ -104,15 +104,15 @@ export default function ClientAddReservation() {
                         <FormGroup>
                             <FormControlLabel
                                 control={<Checkbox checked={addReservationFormData.Rimfire} onChange={HandleCheckboxChange('Rimfire')} value="Rimfire" />}
-                                label="Rimfire"
+                                label="Broń z bocznym zapłonem"
                             />
                             <FormControlLabel
                                 control={<Checkbox checked={addReservationFormData.Centerfire} onChange={HandleCheckboxChange('Centerfire')} value="Centerfire" />}
-                                label="Centerfire"
+                                label="Broń z centralnym zapłonem"
                             />
                             <FormControlLabel
                                 control={<Checkbox checked={addReservationFormData.Shell} onChange={HandleCheckboxChange('Shell')} value="Shell" />}
-                                label="Shell"
+                                label="Broń śrutowa"
                             />
                         </FormGroup>
                     </Grid>
@@ -127,7 +127,7 @@ export default function ClientAddReservation() {
                         type="submit"
                         fullWidth
                     >
-                        Add reservation
+                        Dodaj rezerwację
                     </Button>
                 </div>
             </form>

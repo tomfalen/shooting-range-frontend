@@ -52,22 +52,22 @@ export default function WorkerManager() {
 
     const [columns] = useState({
         columns: [
-            { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
-            { title: 'Begin Time', field: 'BeginTime', type: 'date', editable: 'never' },
-            { title: 'End Time', field: 'EndTime', type: 'date', editable: 'never' },
-            { title: 'Creation Time', field: 'CreationTime', type: 'date', editable: 'never' },
-            { title: 'Modification Time', field: 'ModificationTime', type: 'date', editable: 'never' },
-            { title: 'Position', field: 'Position', editable: 'never' },
-            { title: 'Perceptor', field: 'Perceptor', editable: 'never' },
+            { title: 'Id', field: 'Id', editable: 'never', hidden: 'true' },
+            { title: 'Czas rozpoczęcia', field: 'BeginTime', type: 'date', editable: 'never' },
+            { title: 'Czas zakończenia', field: 'EndTime', type: 'date', editable: 'never' },
+            { title: 'Czas utworzenia', field: 'CreationTime', type: 'date', editable: 'never' },
+            { title: 'Czas modyfikacji', field: 'ModificationTime', type: 'date', editable: 'never' },
+            { title: 'Tor', field: 'Position', editable: 'never' },
+            { title: 'Opiekun', field: 'Perceptor', editable: 'never' },
             { title: 'Status', field: 'Status', editable: 'never' },
         ],
     });
 
     const [columnsAbsencess] = useState({
         columns: [
-            { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
-            { title: 'Time from', field: 'TimeFrom', editable: 'always', type: 'date' },
-            { title: 'Time to', field: 'TimeTo', editable: 'always', type: 'date' },
+            { title: 'Id', field: 'Id', editable: 'never', hidden: 'true' },
+            { title: 'Od', field: 'TimeFrom', editable: 'always', type: 'date' },
+            { title: 'Do', field: 'TimeTo', editable: 'always', type: 'date' },
         ],
     });
     const [{ sessionId }] = useContext(authContext);
@@ -221,7 +221,7 @@ export default function WorkerManager() {
                                 <AccountCircleIcon />
                             </Avatar>
                             <Typography component="h1" variant="h5">
-                                Account information
+                                Informacje o koncie
                                 </Typography>
                         </Grid>
                         <Grid item xs={12} spacing={2}>
@@ -230,7 +230,7 @@ export default function WorkerManager() {
                                 value={formData.FirstName}
                                 fullWidth
                                 id="standard-basic"
-                                label="First Name"
+                                label="Imię"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -240,7 +240,7 @@ export default function WorkerManager() {
                             <TextField
                                 fullWidth
                                 id="standard-basic"
-                                label="Last Name"
+                                label="Nazwisko"
                                 name="LastName"
                                 value={formData.LastName}
                                 InputProps={{
@@ -254,7 +254,7 @@ export default function WorkerManager() {
                                 id="standard-basic"
                                 name="username"
                                 value={formData.Username}
-                                label="Username"
+                                label="Nazwa użytkownika"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -264,7 +264,7 @@ export default function WorkerManager() {
                             <TextField
                                 fullWidth
                                 name="Email"
-                                label="Email"
+                                label="Adres e-mail"
                                 value={formData.Email}
                                 id="standard-basic"
                                 InputProps={{
@@ -276,7 +276,7 @@ export default function WorkerManager() {
                             <TextField
                                 name="Phone"
                                 value={formData.Phone}
-                                label="Phone"
+                                label="Telefon"
                                 fullWidth
                                 id="standard-basic"
                                 InputProps={{
@@ -290,7 +290,7 @@ export default function WorkerManager() {
                                 id="standard-basic"
                                 name="Birthday"
                                 value={formData.Birthday}
-                                label="Birthday"
+                                label="Urodziny"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -301,7 +301,7 @@ export default function WorkerManager() {
                                 fullWidth
                                 name="EmployeeFrom"
                                 value={formData.EmployeeFrom}
-                                label="Employeed"
+                                label="Zatrudiony"
                                 id="standard-basic"
                                 InputProps={{
                                     readOnly: true,
@@ -312,7 +312,7 @@ export default function WorkerManager() {
 
                     <Grid item xs={9} className={classes.bigMenu}>
                         <MaterialTable
-                            title="Your reservations"
+                            title="Twoje rezerwacje"
                             columns={columns.columns}
                             icons={tableIcons}
                             data={data.data}
@@ -339,7 +339,7 @@ export default function WorkerManager() {
                             columns={columnsAbsencess.columns}
                             icons={tableIcons}
                             data={dataAbsencess.data}
-                            title="Your absencess"
+                            title="Twoje nieobecności"
                             options={{
                             }}
                             editable={{

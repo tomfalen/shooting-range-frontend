@@ -45,17 +45,17 @@ export default function WorkerManager() {
 
   const [columns] = useState({
     columns: [
-      { title: 'ID', field: 'Id', editable: 'never', hidden: 'true' },
+      { title: 'Id', field: 'Id', editable: 'never', hidden: 'true' },
       { title: 'Password', field: 'Password', editable: 'onAdd', hidden: 'true' },
-      { title: 'Name', field: 'FirstName', editable: 'always' },
-      { title: 'Surname', field: 'LastName', editable: 'always' },
+      { title: 'Imię', field: 'FirstName', editable: 'always' },
+      { title: 'Nazwisko', field: 'LastName', editable: 'always' },
       { title: 'Pesel', field: 'Pesel', editable: 'always' },
-      { title: 'Birthday', field: 'Birthday', type: 'date', editable: 'always' },
-      { title: 'Phone', field: 'Phone', editable: 'always' },
-      { title: 'Employeed', field: 'EmployeeFrom', type: 'date', editable: 'never' },
+      { title: 'Urodziny', field: 'Birthday', type: 'date', editable: 'always' },
+      { title: 'Telefon', field: 'Phone', editable: 'always' },
+      { title: 'Zatrudniony', field: 'EmployeeFrom', type: 'date', editable: 'never' },
       { title: 'Employee to', field: 'EmployeeTo', type: 'date', editable: 'never', hidden: 'true' },
-      { title: 'Username', field: 'Username', editable: 'never' },
-      { title: 'Email', field: 'Email', editable: 'always' }
+      { title: 'Nazwa użytkownika', field: 'Username', editable: 'never' },
+      { title: 'E-mail', field: 'Email', editable: 'always' }
     ],
   });
   const [{ sessionId }] = useContext(authContext);
@@ -100,7 +100,7 @@ export default function WorkerManager() {
       </div>
       <div class="workerList">
       <MaterialTable
-        title="Worker table"
+        title="Pracownicy"
         columns={columns.columns}
         icons={tableIcons}
         data={data.data}

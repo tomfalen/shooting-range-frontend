@@ -91,7 +91,7 @@ const LoginForm = () => {
 								<LockOutlinedIcon />
 							</Avatar>
 							<Typography component="h1" variant="h5">
-								Sign in
+								Logowanie
 							</Typography>
 							<form className={classes.form} onSubmit={onSubmit} noValidate>
 								<TextField
@@ -100,7 +100,7 @@ const LoginForm = () => {
 									required
 									fullWidth
 									id="email"
-									label="Email Address"
+									label="Adres e-mail"
 									value={formData.username}
 									onChange={onChange}
 									name="username"
@@ -113,7 +113,7 @@ const LoginForm = () => {
 									required
 									fullWidth
 									name="password"
-									label="Password"
+									label="Hasło"
 									value={formData.password}
 									onChange={onChange}
 									type="password"
@@ -127,7 +127,7 @@ const LoginForm = () => {
 									color="primary"
 									className={classes.submit}
 								>
-									Sign In
+									Zaloguj
 								</Button>
 							</form>
 						</div>

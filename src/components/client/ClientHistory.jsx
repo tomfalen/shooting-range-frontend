@@ -28,12 +28,12 @@ export default function ClientHistory() {
     const [historyColumns] = useState({
         columns: [
             { title: 'ID', field: 'Id', editable: 'never', hidden: true },
-            { title: 'Begin Time', field: 'BeginTime', type: 'date', editable: 'never' },
-            { title: 'End Time', field: 'EndTime', type: 'date', editable: 'never' },
-            { title: 'Creation Time', field: 'CreationTime', type: 'date', editable: 'never' },
-            { title: 'Modification Time', field: 'ModificationTime', type: 'date', editable: 'never' },
-            { title: 'Position', field: 'Position', editable: 'never' },
-            { title: 'Perceptor', field: 'Perceptor', editable: 'never' },
+            { title: 'Czas rozpoczęcia', field: 'BeginTime', type: 'date', editable: 'never' },
+            { title: 'Czas zakończenia', field: 'EndTime', type: 'date', editable: 'never' },
+            { title: 'Czas utworzenia', field: 'CreationTime', type: 'date', editable: 'never' },
+            { title: 'Czas modyfikacji', field: 'ModificationTime', type: 'date', editable: 'never' },
+            { title: 'Tor', field: 'Position', editable: 'never' },
+            { title: 'Opiekun', field: 'Perceptor', editable: 'never' },
             { title: 'Status', field: 'Status', editable: 'never' },
         ],
     });
@@ -76,7 +76,7 @@ export default function ClientHistory() {
     return (
         <div>
             <Typography variant="h4" align="center">
-                History
+                Historia
             </Typography>
             <hr />
             <br />
@@ -86,7 +86,7 @@ export default function ClientHistory() {
                         <Grid item lg={4} sm={6} xs={12}>
                             <KeyboardDatePicker
                                 fullWidth
-                                label="From"
+                                label="Od"
                                 name="From"
                                 value={historyClientFormData.From}
                                 onChange={ChangeHistoryFromDate}
@@ -96,7 +96,7 @@ export default function ClientHistory() {
                         <Grid item lg={4} sm={6} xs={12}>
                             <KeyboardDatePicker
                                 fullWidth
-                                label="To"
+                                label="Do"
                                 name="To"
                                 value={historyClientFormData.To}
                                 onChange={ChangeHistoryToDate}
@@ -116,7 +116,7 @@ export default function ClientHistory() {
                             type="submit"
                             fullWidth
                         >
-                            Show history
+                            Pokaż historię
                         </Button>
                     </Grid>
                 </Grid>
@@ -124,7 +124,7 @@ export default function ClientHistory() {
             <br />
             <br />
             <MaterialTable
-                title='History'
+                title='Historia'
                 columns={historyColumns.columns}
                 icons={tableIcons}
                 data={historyData.data}
